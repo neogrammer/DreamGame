@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\resources">
+      <UniqueIdentifier>{e98d4fef-9525-4276-bff0-7d692fa800db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\resources">
+      <UniqueIdentifier>{42491016-0fca-4433-a3a3-f427725eb410}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\scenes">
+      <UniqueIdentifier>{40e5e2eb-7bab-47f2-b2ea-91addb9235d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\scenes">
+      <UniqueIdentifier>{ea7c3f81-5321-43e8-b774-2179e4774400}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\fonts">
+      <UniqueIdentifier>{c4588629-48a8-4ea9-a628-83a8277f8989}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\stages">
+      <UniqueIdentifier>{aa9b77df-3b5a-4633-b4dd-2ea2bcc4aded}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\stages">
+      <UniqueIdentifier>{0418d3c1-c7d2-4d5e-8f95-4c56a428ae49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\textures">
+      <UniqueIdentifier>{4f1d0bb4-20ce-45d7-88ea-465ce052ac0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\textures\tilesets">
+      <UniqueIdentifier>{3b4069f3-ff67-4fc3-b0bb-7666e375996d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\textures\player">
+      <UniqueIdentifier>{6bcc8a0c-db69-4afb-a31d-7d6c451ab112}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\actors">
+      <UniqueIdentifier>{856dda45-6d1c-47b9-8d7c-a7c007034c4f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\actors">
+      <UniqueIdentifier>{8f507f40-94ac-431d-81ae-cdc678920476}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\misc">
+      <UniqueIdentifier>{088f5eec-3384-4e39-91d5-3ccdf2697091}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\misc">
+      <UniqueIdentifier>{86ecc6c3-be7f-4110-9d7b-b9da6beb133b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\FSM">
+      <UniqueIdentifier>{120bf80e-83ea-42b8-89c1-3319b4b6b536}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\FSM">
+      <UniqueIdentifier>{2f3e2139-cf97-4cbf-a63c-6d36a56b8430}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\anims">
+      <UniqueIdentifier>{f7138550-9576-4f38-a577-18eaf884fbb1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\FSM\derived">
+      <UniqueIdentifier>{75b07a88-d665-40b5-b9a3-e9161ec96562}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="assets\fonts\Crusty.ttf">
+      <Filter>Resource Files\fonts</Filter>
+    </Font>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\stages\IntroStage.cpp">
+      <Filter>Source Files\stages</Filter>
+    </ClCompile>
+    <ClCompile Include="source\stages\Stage.cpp">
+      <Filter>Source Files\stages</Filter>
+    </ClCompile>
+    <ClCompile Include="source\resources\Cfg.cpp">
+      <Filter>Source Files\resources</Filter>
+    </ClCompile>
+    <ClCompile Include="source\scenes\MenuScene.cpp">
+      <Filter>Source Files\scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="source\scenes\OverScene.cpp">
+      <Filter>Source Files\scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="source\scenes\PausedScene.cpp">
+      <Filter>Source Files\scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="source\scenes\PlayScene.cpp">
+      <Filter>Source Files\scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="source\scenes\Scene.cpp">
+      <Filter>Source Files\scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="source\scenes\SceneMgr.cpp">
+      <Filter>Source Files\scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="source\scenes\SplashScene.cpp">
+      <Filter>Source Files\scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="source\scenes\TitleScene.cpp">
+      <Filter>Source Files\scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="source\actors\Player.cpp">
+      <Filter>Source Files\actors</Filter>
+    </ClCompile>
+    <ClCompile Include="source\misc\Animation.cpp">
+      <Filter>Source Files\misc</Filter>
+    </ClCompile>
+    <ClCompile Include="source\misc\AnimObject.cpp">
+      <Filter>Source Files\misc</Filter>
+    </ClCompile>
+    <ClCompile Include="source\misc\GameObject.cpp">
+      <Filter>Source Files\misc</Filter>
+    </ClCompile>
+    <ClCompile Include="source\misc\globals.cpp">
+      <Filter>Source Files\misc</Filter>
+    </ClCompile>
+    <ClCompile Include="source\misc\Camera.cpp">
+      <Filter>Source Files\misc</Filter>
+    </ClCompile>
+    <ClCompile Include="source\misc\Animator.cpp">
+      <Filter>Source Files\misc</Filter>
+    </ClCompile>
+    <ClCompile Include="source\FSM\FSMEvent.cpp">
+      <Filter>Source Files\FSM</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\stages\IntroStage.h">
+      <Filter>Header Files\stages</Filter>
+    </ClInclude>
+    <ClInclude Include="include\stages\Stage.h">
+      <Filter>Header Files\stages</Filter>
+    </ClInclude>
+    <ClInclude Include="include\resources\Cfg.h">
+      <Filter>Header Files\resources</Filter>
+    </ClInclude>
+    <ClInclude Include="include\resources\ResourceMgr.h">
+      <Filter>Header Files\resources</Filter>
+    </ClInclude>
+    <ClInclude Include="include\scenes\MenuScene.h">
+      <Filter>Header Files\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="include\scenes\OverScene.h">
+      <Filter>Header Files\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="include\scenes\PausedScene.h">
+      <Filter>Header Files\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="include\scenes\PlayScene.h">
+      <Filter>Header Files\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="include\scenes\Scene.h">
+      <Filter>Header Files\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="include\scenes\SceneMgr.h">
+      <Filter>Header Files\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="include\scenes\SplashScene.h">
+      <Filter>Header Files\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="include\scenes\TitleScene.h">
+      <Filter>Header Files\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="include\scenes\SceneName.h">
+      <Filter>Header Files\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="include\stages\StageName.h">
+      <Filter>Header Files\stages</Filter>
+    </ClInclude>
+    <ClInclude Include="include\actors\Player.h">
+      <Filter>Header Files\actors</Filter>
+    </ClInclude>
+    <ClInclude Include="include\misc\Animation.h">
+      <Filter>Header Files\misc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\misc\AnimObject.h">
+      <Filter>Header Files\misc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\misc\GameObject.h">
+      <Filter>Header Files\misc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\misc\globals.h">
+      <Filter>Header Files\misc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\misc\Camera.h">
+      <Filter>Header Files\misc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\misc\Animator.h">
+      <Filter>Header Files\misc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\FSM\DuckFold.h">
+      <Filter>Header Files\FSM</Filter>
+    </ClInclude>
+    <ClInclude Include="include\FSM\FSM.h">
+      <Filter>Header Files\FSM</Filter>
+    </ClInclude>
+    <ClInclude Include="include\FSM\PlayerAnimFSM.h">
+      <Filter>Header Files\FSM\derived</Filter>
+    </ClInclude>
+    <ClInclude Include="include\FSM\AnimStates.h">
+      <Filter>Header Files\FSM</Filter>
+    </ClInclude>
+    <ClInclude Include="include\FSM\StateUtil.h">
+      <Filter>Header Files\FSM</Filter>
+    </ClInclude>
+    <ClInclude Include="include\FSM\FSMEvent.h">
+      <Filter>Header Files\FSM</Filter>
+    </ClInclude>
+    <ClInclude Include="include\FSM\Events.h">
+      <Filter>Header Files\FSM</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="assets\textures\tilesets\Tiles.png">
+      <Filter>Resource Files\textures\tilesets</Filter>
+    </Image>
+    <Image Include="assets\textures\player\Vegeta.png">
+      <Filter>Resource Files\textures\player</Filter>
+    </Image>
+    <Image Include="assets\textures\player\vegeta_sheet.png">
+      <Filter>Resource Files\textures\player</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="assets\anims\player.anm">
+      <Filter>Resource Files\anims</Filter>
+    </None>
+  </ItemGroup>
+</Project>

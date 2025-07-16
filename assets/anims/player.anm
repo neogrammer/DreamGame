@@ -1,0 +1,33 @@
+8 1
+ Idle 1 1000
+ 1 3 132 170 PlayerSheet132x170
+ 0 0 0 0 0 0
+ 31 3 1 0 0
+ Walk 1 130
+ 1 6 132 170 PlayerSheet132x170
+ 0 0 0 0 0 0 0 0 0 0 0 0
+ 31 6 1 3 0
+ Jump 0 250
+ 1 3 132 170 PlayerSheet132x170
+ 0 0 0 0 0 0
+ 31 3 1 9 0
+ Fall 0 250
+ 1 3 132 170 PlayerSheet132x170
+ 0 0 0 0 0 0
+ 31 3 1 12 0
+ AirKick 0 250
+ 1 3 132 170 PlayerSheet132x170
+ 0 0 0 0 0 0
+ 31 3 1 15 0
+ Attack1 1 130
+ 1 6 132 170 PlayerSheet132x170
+ 0 0 0 0 0 0 0 0 0 0 0 0
+ 31 6 1 18 0
+ Attack2 1 130
+ 1 6 132 170 PlayerSheet132x170
+ 0 0 0 0 0 0 0 0 0 0 0 0
+ 31 6 1 24 0
+ Hit 0 250
+ 1 1 132 170 PlayerSheet132x170
+ 0 0
+ 31 1 1 30 0
