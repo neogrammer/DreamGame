@@ -26,26 +26,25 @@ public:
 	void walk();
 	void stopMoving();
 	void shoot1();
-	void shoot2();
 	void stopShooting();
-	void airKick();
 	void fall();
 	void land();
 	void hit();
 	void recover();
 
 	inline bool isIdle()   const { return std::holds_alternative<IdleState>(fsm.getStateVariant()); }
-	inline bool isJumping()   const { return std::holds_alternative<JumpState>(fsm.getStateVariant()); }
-	inline bool isWalking()   const { return std::holds_alternative<WalkState>(fsm.getStateVariant()); }
-	inline bool isFalling()   const { return std::holds_alternative<FallState>(fsm.getStateVariant()); }
-	inline bool isShooting()   const { return std::holds_alternative<Attack1State>(fsm.getStateVariant()); }
-	inline bool isAirKicking()   const { return std::holds_alternative<AirKickState>(fsm.getStateVariant()); }
+	inline bool isJumping()   const { return std::holds_alternative<JumpingState>(fsm.getStateVariant()); }
+	inline bool isMoving()   const { return std::holds_alternative<MovingState>(fsm.getStateVariant()); }
+	inline bool isFalling()   const { return std::holds_alternative<FallingState>(fsm.getStateVariant()); }
+	inline bool isShooting()   const { return std::holds_alternative<ShootingState>(fsm.getStateVariant()); }
 	inline bool isRecovering()   const { return std::holds_alternative<HitState>(fsm.getStateVariant()); }
-	inline bool isShooting2()   const { return std::holds_alternative<Attack2State>(fsm.getStateVariant()); }
+	inline bool isDead()   const { return std::holds_alternative<DeadState>(fsm.getStateVariant()); }
+	inline bool isLanding()   const { return std::holds_alternative<LandingState>(fsm.getStateVariant()); }
+	inline bool isLandingAndShooting() const{ return std::holds_alternative<LandingAndShootingState>(fsm.getStateVariant()); }
 
-	inline bool canJump()     const { return isIdle() || isWalking(); }
+	inline bool canJump()     const { return isIdle() || isMoving(); }
 	inline bool canWalk ()     const { return !isRecovering() || !isShooting(); }
-	inline bool canShoot()     const { return (!isJumping() && !isWalking() && !isFalling() && !isRecovering() && !isAirKicking() && !shootOnCooldown); }
+	inline bool canShoot()     const { return (!isJumping() && !isMoving() && !isFalling() && !isRecovering() &&  !shootOnCooldown); }
 };
 
 

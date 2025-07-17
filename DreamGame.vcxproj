@@ -80,6 +80,7 @@
     <Image Include="assets\textures\tilesets\Tiles.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="assets\anims\megaman.anm" />
     <None Include="assets\anims\player.anm" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

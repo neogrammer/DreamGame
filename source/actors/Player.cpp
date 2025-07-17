@@ -3,10 +3,10 @@
 #include <FSM/DuckFold.h>
 
 Player::Player()
-	: AnimObject{ Cfg::Textures::PlayerSheet132x170, {}, {}, {}, {132.f,170.f}, {{0,0},{132,170}} }
+	: AnimObject{ Cfg::Textures::MegamanSheet130x160, {}, {}, {}, {130.f,160.f}, {{0,0},{130,160}} }
 	, fsm{}
 {
-	addFrames("assets/anims/player.anm");
+	addFrames("assets/anims/megaman.anm");
 	animator->setRect("Idle", "Right", 0);
 }
 
@@ -65,7 +65,7 @@ void Player::update(sf::RenderWindow& tv_, float dt_)
 		}
 	}
 
-	if (isWalking())
+	if (isMoving())
 	{
 		if (isFacingLeft())
 			setVel({ -300.f, getVel().y });
@@ -118,17 +118,9 @@ void Player::shoot1()
 		shootOnCooldown = true;
 	}
 }
-void Player::shoot2()
-{
-	dispatch(fsm, EventStartedShooting2{});
-}
 void Player::stopShooting()
 {
 	dispatch(fsm, EventStoppedShooting{});
-}
-void Player::airKick()
-{
-	dispatch(fsm, EventAirKicked{});
 }
 void Player::fall()
 {

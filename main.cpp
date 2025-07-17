@@ -7,6 +7,9 @@
 #include <resources/Cfg.h>
 #include <scenes/SceneMgr.h>
 #include <misc/Camera.h>
+
+float transTimeElapsed;
+
 class DreamGameApp
 {
 	sf::RenderWindow tv;

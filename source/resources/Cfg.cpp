@@ -38,8 +38,7 @@ void Cfg::initTextures()
 	textures.load(Textures::Tileset1, "assets/textures/tilesets/Tiles.png");
 	textures.load(Textures::PlayerSheet64x96, "assets/textures/player/Vegeta.png");
 	textures.load(Textures::PlayerSheet132x170, "assets/textures/player/vegeta_sheet.png");
-
-
+	textures.load(Textures::MegamanSheet130x160, "assets/textures/player/PlayerAtlas.png");
 }
 
 void Cfg::initStages()

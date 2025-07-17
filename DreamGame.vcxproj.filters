@@ -239,5 +239,8 @@
     <None Include="assets\anims\player.anm">
       <Filter>Resource Files\anims</Filter>
     </None>
+    <None Include="assets\anims\megaman.anm">
+      <Filter>Resource Files\anims</Filter>
+    </None>
   </ItemGroup>
 </Project>

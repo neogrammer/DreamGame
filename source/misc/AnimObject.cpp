@@ -383,6 +383,10 @@ void AnimObject::addFrames(const std::string& filename)
 			{ 
 				texs = Cfg::Textures::PlayerSheet132x170;
 			}
+			else if (texName == "MegamanSheet130x160")
+			{
+				texs = Cfg::Textures::MegamanSheet130x160;
+			}
 
 			for (int i = 0; i < numFrames; i++)
 			{
