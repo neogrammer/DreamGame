@@ -74,6 +74,7 @@
     <ClInclude Include="include\stages\StageName.h" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="assets\textures\player\PlayerAtlas.png" />
     <Image Include="assets\textures\player\Vegeta.png" />
     <Image Include="assets\textures\player\vegeta_sheet.png" />
     <Image Include="assets\textures\tilesets\Tiles.png" />

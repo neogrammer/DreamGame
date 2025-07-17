@@ -231,6 +231,9 @@
     <Image Include="assets\textures\player\vegeta_sheet.png">
       <Filter>Resource Files\textures\player</Filter>
     </Image>
+    <Image Include="assets\textures\player\PlayerAtlas.png">
+      <Filter>Resource Files\textures\player</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\anims\player.anm">
