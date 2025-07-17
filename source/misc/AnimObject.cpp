@@ -387,6 +387,10 @@ void AnimObject::addFrames(const std::string& filename)
 			{
 				texs = Cfg::Textures::MegamanSheet130x160;
 			}
+			else
+			{
+				std::cerr << "Unknown TexName in file: " << filename << std::endl;
+			}
 
 			for (int i = 0; i < numFrames; i++)
 			{
@@ -467,6 +471,7 @@ void AnimObject::setRect(const std::string& anim, const std::string& dir, int id
 	}
 
 	GameObject::setRect(texRects[anim][dir][idx]);
+	setFrameIndex(idx);
 }
 
 AnimObject::AnimObject()
@@ -518,12 +523,30 @@ void AnimObject::render(sf::RenderWindow& tv_)
 
 void AnimObject::update(sf::RenderWindow& tv_, float dt_)
 {
-	animElapsed += dt_;
-	if (frameIndex >= animDelays[currAnim].size()) frameIndex = animDelays[currAnim].size() - 1;
-	if (animElapsed >= animDelays[currAnim][frameIndex]) {
-		animElapsed = 0.f;
-		animate();
+
+	// if not trying to transition out and not the last frame yet, keep animating
+	if (transitioning && frameIndex >= texRects[currAnim][((uniDirectional) ? "Uni" : ((isFacingLeft()) ? "Left" : "Right"))].size() - 1)
+	{
+		// we are now transitioning and on the last frame
+		transitionElapsed += dt_;
+		if (transitionElapsed >= transitionDelay)
+		{
+			transitionElapsed = 0.f;
+			transitioning = false;
+			readyToTransition = true;
+		}
 	}
+	else
+	{
+		animElapsed += dt_;
+		if (frameIndex >= animDelays[currAnim].size()) frameIndex = animDelays[currAnim].size() - 1;
+		if (animElapsed >= animDelays[currAnim][frameIndex]) {
+			animElapsed = 0.f;
+			animate();
+		}
+	}
+	
+	if (readyToTransition) makeTransition();
 
 	GameObject::update(tv_, dt_);
 }
@@ -541,4 +564,25 @@ void AnimObject::setCurrAnimName(const std::string& animName_)
 bool AnimObject::isFacingLeft()
 {
 	return facingLeft;
+}
+
+bool AnimObject::isTransitioning()
+{
+	return transitioning;
+}
+
+bool AnimObject::isReadyToTransition()
+{
+	return readyToTransition;
+}
+
+bool AnimObject::beginTransitioning()
+{
+	return transitioning = true;
+}
+
+void AnimObject::setFrameIndex(int idx_)
+{
+	if (idx_ < texRects[currAnim][isFacingLeft() ? "Left" : "Right"].size())
+		frameIndex = idx_;
 }

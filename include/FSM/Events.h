@@ -1,6 +1,20 @@
-#pragma once
+#ifndef EVENTS_H__
+#define EVENTS_H__
+
 #include <variant>
-#include <FSM/FSMEvent.h>
+//#include <FSM/FSMEvent.h>
+#include <string>
+class FSMEvent
+{
+public:
+	std::string name{ "none" };
+
+	inline void setName(std::string name_) { name = name_; }
+	inline std::string getName() { return name; }
+	virtual ~FSMEvent() = 0;
+};
+
+
 struct EventStartedShooting : FSMEvent { EventStartedShooting() : FSMEvent() { setName("StartedShooting"); } };
 struct EventStoppedShooting : FSMEvent { EventStoppedShooting() : FSMEvent() { setName("StoppedShooting"); } };
 struct EventStartedMoving : FSMEvent { EventStartedMoving() : FSMEvent() { setName("StartedMoving"); } };
@@ -14,3 +28,5 @@ struct EventDied : FSMEvent { EventDied() : FSMEvent() { setName("Died"); } };
 struct EventTransEnd : FSMEvent { EventTransEnd() : FSMEvent() { setName("TransEnd"); } };
 
 using PlayerEventVar = std::variant<EventStartedShooting, EventJumped, EventDied, EventStartedMoving , EventStoppedMoving, EventFell, EventHit, EventLanded, EventStoppedShooting, EventRecovered, EventTransEnd>;
+
+#endif

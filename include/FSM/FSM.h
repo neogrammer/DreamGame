@@ -2,9 +2,11 @@
 #define FSM_H__
 #include <variant>
 #include <optional>
-#include <FSM/Events.h>
+//#include <FSM/Events.h>
+//#include <FSM/StateUtil.h>
+#include <string_view>
+#include <FSM/AnimStates.h>
 
-#include <string>
 
 template <typename Derived, typename StateVariant>
 class FSM
@@ -30,6 +32,20 @@ public:
 	const StateVariant& getStateVariant() const {
 		return state_;
 	}
+
+	constexpr std::string_view getStateName() const
+	{
+		return toString(getStateEnum<StateVariant>(state_));
+	}
+
+	
+
 };
+
+template<typename Fsm, typename... Events>
+void dispatch(Fsm& fsm, Events&&... events)
+{
+	(fsm.dispatch(std::forward<Events>(events)), ...);
+}
 
 #endif

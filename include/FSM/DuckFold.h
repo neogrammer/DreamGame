@@ -2,10 +2,10 @@
 #define DUCK_FOLD_H__
 #include <FSM/FSM.h>
 
-template<typename Fsm, typename... Events>
-void dispatch(Fsm& fsm, Events&&... events)
-{
-	(fsm.dispatch(std::forward<Events>(events)), ...);
-}
+//template<typename Fsm, typename... Events>
+//void dispatch(Fsm& fsm, Events&&... events)
+//{
+//	(fsm.dispatch(std::forward<Events>(events)), ...);
+//}
 
 #endif

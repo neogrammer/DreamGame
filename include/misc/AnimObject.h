@@ -16,8 +16,12 @@ class AnimObject : public GameObject
 	bool facingLeft{};
 	bool uniDirectional{};
 	bool onlyRightTexture{ true };
-	float amimSpeed{ 0.13f };
 	float animElapsed{ 0.f };
+
+
+	bool transitioning{ false };
+	float transitionDelay{ 0.3f };
+	float transitionElapsed{ 0.f };
 
 
 	std::unordered_set<std::string> anims{};
@@ -33,7 +37,9 @@ class AnimObject : public GameObject
 	void addFrame(const std::string& name_, const sf::Vector2f& offset_, const sf::IntRect& rect_, const sf::Vector2f& size_, const Cfg::Textures& tex_, bool leftFacing_ = false, bool repeating = true, float animDelay_ = 0.f );
 	void animate();
 protected:
-	
+	bool readyToTransition{ false };
+
+
 	AnimObject();
 	virtual ~AnimObject() override = default;
 	explicit AnimObject(Cfg::Textures texID_, sf::Vector2f pos_ = { 0.f,0.f }, sf::Vector2f vel_ = { 0.f,0.f }, sf::Vector2f off_ = { 0.f,0.f }, sf::Vector2f size_ = { 0.f,0.f }, sf::IntRect rect_ = { {0,0},{0,0} });
@@ -54,7 +60,11 @@ public:
 	std::string getCurrAnimName();
 	void setCurrAnimName(const std::string& animName_);
 	bool isFacingLeft();
-
+	bool isTransitioning();
+	bool isReadyToTransition();
+	bool beginTransitioning();
+	virtual void makeTransition() = 0;
+	void setFrameIndex(int idx_);
 	std::unique_ptr<Animator> animator;
 };
 

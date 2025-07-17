@@ -7,7 +7,7 @@
 class Player : public AnimObject
 {
 	FSM_Player fsm;
-	float shootDelay{ 0.3f };
+	float shootDelay{ 0.25f };
 	float shootElapsed{ 0.f };
 	float shootOnCooldown{ false };
 public:
@@ -45,6 +45,9 @@ public:
 	inline bool canJump()     const { return isIdle() || isMoving(); }
 	inline bool canWalk ()     const { return !isRecovering() || !isShooting(); }
 	inline bool canShoot()     const { return (!isJumping() && !isMoving() && !isFalling() && !isRecovering() &&  !shootOnCooldown); }
+	
+
+	void makeTransition() override final;
 };
 
 

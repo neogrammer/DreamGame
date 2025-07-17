@@ -12,6 +12,14 @@ Player::Player()
 
 void Player::input()
 {
+	std::string_view animName = toString(getStateEnum(fsm.getStateVariant()));
+	if (animName.data() == "Dead")
+	{
+		// indicate to owning code  I am dead and do not render
+		std::cout << "Game Over" << std::endl;
+		return;
+	}
+
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space)) 
 	{
 		jump();
@@ -37,7 +45,13 @@ void Player::input()
 }
 void Player::render(sf::RenderWindow& tv_)
 {
-	std::string_view animName = toString(fsm.getStateEnum());
+	std::string_view animName = toString(getStateEnum(fsm.getStateVariant()));
+	if (animName.data() == "Dead")
+	{
+		// indicate to owning code  I am dead and do not render
+		std::cout << "Game Over" << std::endl;
+		return;
+	}
 	if (animName != getCurrAnimName() && animName != "None")
 	{
 		setCurrAnimName(animName.data());
@@ -48,9 +62,17 @@ void Player::render(sf::RenderWindow& tv_)
 }
 void Player::update(sf::RenderWindow& tv_, float dt_)
 {
+	std::string_view animName = toString(getStateEnum(fsm.getStateVariant()));
+	if (animName.data() == "Dead")
+	{
+		// indicate to owning code  I am dead and do not render
+		std::cout << "Game Over" << std::endl;
+		return;
+	}
+
 	if (isJumping())
 	{
-		setVel({getVel().x, getVel().y + 200.f * dt_ });
+		setVel({ getVel().x, getVel().y + 200.f * dt_ });
 		if (getVel().y > 0.f)
 			fall();
 	}
@@ -60,20 +82,11 @@ void Player::update(sf::RenderWindow& tv_, float dt_)
 		if (getPos().y >= 900.f - 170.f - 38.f)
 		{
 			land();
-			setVel({ getVel().x, 0.f});
-			setPos({getPos().x , 900.f - 170.f - 38.f });
+			setVel({ getVel().x, 0.f });
+			setPos({ getPos().x , 900.f - 170.f - 38.f });
 		}
 	}
 
-	if (isMoving())
-	{
-		if (isFacingLeft())
-			setVel({ -300.f, getVel().y });
-		else
-			setVel({ 300.f, getVel().y });
-	}
-	else
-		stopMoving();
 
 	if (shootOnCooldown)
 	{
@@ -90,6 +103,11 @@ void Player::update(sf::RenderWindow& tv_, float dt_)
 		recover();
 	}
 
+	if (fsm.getStateName().data() != getCurrAnimName())
+	{
+		setCurrAnimName(fsm.getStateName().data());
+		setFrameIndex(0);
+	}
 	AnimObject::update(tv_, dt_);
 }
 
@@ -103,7 +121,9 @@ void Player::jump()
 }
 void Player::walk()
 {
+	setVel({ (isFacingLeft() ? -300.f : 300.f),getVel().y});
 	dispatch(fsm, EventStartedMoving{});
+	beginTransitioning();
 }
 void Player::stopMoving()
 {
@@ -117,10 +137,12 @@ void Player::shoot1()
 		dispatch(fsm, EventStartedShooting{});
 		shootOnCooldown = true;
 	}
+	shootElapsed = 0.f;
 }
 void Player::stopShooting()
 {
-	dispatch(fsm, EventStoppedShooting{});
+	if (!shootOnCooldown)
+		dispatch(fsm, EventStoppedShooting{});
 }
 void Player::fall()
 {
@@ -129,6 +151,7 @@ void Player::fall()
 void Player::land()
 {
 	dispatch(fsm, EventLanded{});
+	beginTransitioning();
 }
 void Player::hit()
 {
@@ -138,3 +161,10 @@ void Player::recover()
 {
 	dispatch(fsm, EventRecovered{});
 }
+
+void Player::makeTransition()
+{
+	readyToTransition = false;
+	dispatch(fsm, EventTransEnd{});
+}
+
