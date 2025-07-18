@@ -33,7 +33,7 @@ void Player::input()
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Enter))
 		shoot1();
 	else
-		if (isShooting())
+		if (isShooting() || isFallingAndShooting() || isJumpingAndShooting() || isLandingAndShooting() || isMovingAndShooting())
 			stopShooting();
 }
 void Player::render(sf::RenderWindow& tv_)
@@ -44,15 +44,15 @@ void Player::render(sf::RenderWindow& tv_)
 void Player::update(sf::RenderWindow& tv_, float dt_)
 {
 
-	if (isJumping())
+	if (isJumping() || isJumpingAndShooting())
 	{
-		setVel({ getVel().x, getVel().y + 200.f * dt_ });
+		setVel({ getVel().x, getVel().y + 2400.f * dt_ });
 		if (getVel().y > 0.f)
 			fall();
 	}
-	else if (isFalling())
+	else if (isFalling() || isFallingAndShooting())
 	{
-		setVel({ getVel().x, getVel().y + 200.f * dt_ });
+		setVel({ getVel().x, getVel().y + 2400.f * dt_ });
 		if (getPos().y >= 900.f - 170.f - 38.f)
 		{
 			land();
@@ -85,7 +85,7 @@ void Player::jump()
 	if (canJump())
 	{
 		dispatch(fsm, EventJumped{});
-		setVel({ getVel().x, -300.f });
+		setVel({ getVel().x, -1200.f });
 	}
 }
 void Player::walk()

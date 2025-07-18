@@ -452,9 +452,66 @@ void AnimObject::render(sf::RenderWindow& tv_)
 	{
 		const std::string& dir = uniDirectional ? "Uni" : (isFacingLeft() ? ((onlyRightTexture) ? "Right" : "Left") : "Right");
 
+		auto tmp = currAnim;
+
 		currAnim = getFSMState();
-		frameIndex = 0;
-		setRect(currAnim, dir, 0);
+
+		auto tmp2 = currAnim;
+		bool staySameIndex = false;
+		if (tmp != tmp2)
+		{
+			if (tmp == "Moving" || tmp == "MovingAndShooting")
+			{
+				if (tmp2 == "Moving" || tmp2 == "MovingAndShooting")
+				{
+					staySameIndex = true;
+				}
+			}
+			else if (tmp == "Jumping" || tmp == "JumpingAndShooting")
+			{
+				if (tmp2 == "Jumping" || tmp2 == "JumpingAndShooting")
+				{
+					staySameIndex = true;
+				}
+			}
+			else if (tmp == "Falling" || tmp == "FallingAndShooting")
+			{
+				if (tmp2 == "Falling" || tmp2 == "FallingAndShooting")
+				{
+					staySameIndex = true;
+				}
+			}
+			else if (tmp == "Landing" || tmp == "LandingAndShooting")
+			{
+				if (tmp2 == "Landing" || tmp2 == "LandingAndShooting")
+				{ 
+					staySameIndex = true;
+				}
+			}
+		}
+
+
+		if (staySameIndex == false)
+			frameIndex = 0;
+		else
+		{
+			if (animElapsed >= animDelays[currAnim][0])
+			{
+				if (frameIndex >= texRects[currAnim][dir].size() - 1)
+				{
+					if (repeats[currAnim][0])
+						frameIndex = 0;
+					else
+						frameIndex = texRects[currAnim][dir].size() - 1;
+				}
+				else
+				{
+					frameIndex += 1;
+				}
+			}
+		}
+		
+		setRect(currAnim, dir, frameIndex);
 	}
 
 	if (facingLeft && !uniDirectional && onlyRightTexture)

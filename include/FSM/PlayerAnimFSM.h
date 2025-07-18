@@ -80,10 +80,13 @@ public:
 	std::optional<PlayerAnimVar> On_Event(FallingAndShootingState& s, const EventHit& e) { std::cout << "Hit" << std::endl; return HitState{}; }
 	std::optional<PlayerAnimVar> On_Event(FallingAndShootingState& s, const EventDied& e) { std::cout << "Dying" << std::endl; return DyingState{}; }
 	std::optional<PlayerAnimVar> On_Event(FallingAndShootingState& s, const EventLanded& e) { std::cout << "LandingAndShooting" << std::endl; return LandingAndShootingState{}; }
+	std::optional<PlayerAnimVar> On_Event(FallingAndShootingState& s, const EventStoppedShooting& e) { std::cout << "Jumping" << std::endl; return FallingState{}; }
+
+
 
 	std::optional<PlayerAnimVar> On_Event(LandingAndShootingState& s, const EventHit& e) { std::cout << "Hit" << std::endl; return HitState{}; }
 	std::optional<PlayerAnimVar> On_Event(LandingAndShootingState& s, const EventDied& e) { std::cout << "Dying" << std::endl; return DyingState{}; }
-	std::optional<PlayerAnimVar> On_Event(LandingAndShootingState& s, const EventTransEnd& e) { std::cout << "Idle" << std::endl; return IdleState{}; }
+	std::optional<PlayerAnimVar> On_Event(LandingAndShootingState& s, const EventTransEnd& e) { std::cout << "Idle" << std::endl; return ShootingState{}; }
 	std::optional<PlayerAnimVar> On_Event(LandingAndShootingState& s, const EventStoppedShooting& e) { std::cout << "Landing" << std::endl; return LandingState{}; }
 	std::optional<PlayerAnimVar> On_Event(LandingAndShootingState& s, const EventStartedMoving& e) { std::cout << "MovingAndShooting" << std::endl; return MovingAndShootingState{}; }
 
