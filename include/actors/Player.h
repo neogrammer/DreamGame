@@ -48,6 +48,7 @@ public:
 	
 
 	void makeTransition() override final;
+	std::string getFSMState() override final;
 };
 
 

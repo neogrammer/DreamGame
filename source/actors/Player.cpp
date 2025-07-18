@@ -8,18 +8,11 @@ Player::Player()
 {
 	addFrames("assets/anims/megaman.anm");
 	animator->setRect("Idle", "Right", 0);
+	setFrameIndex(0);
 }
 
 void Player::input()
 {
-	std::string_view animName = toString(getStateEnum(fsm.getStateVariant()));
-	if (animName.data() == "Dead")
-	{
-		// indicate to owning code  I am dead and do not render
-		std::cout << "Game Over" << std::endl;
-		return;
-	}
-
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space)) 
 	{
 		jump();
@@ -45,30 +38,11 @@ void Player::input()
 }
 void Player::render(sf::RenderWindow& tv_)
 {
-	std::string_view animName = toString(getStateEnum(fsm.getStateVariant()));
-	if (animName.data() == "Dead")
-	{
-		// indicate to owning code  I am dead and do not render
-		std::cout << "Game Over" << std::endl;
-		return;
-	}
-	if (animName != getCurrAnimName() && animName != "None")
-	{
-		setCurrAnimName(animName.data());
-		setRect(animName.data(), isFacingLeft() ? "Left" : "Right", 0);
-	}
-	
+
 	AnimObject::render(tv_);
 }
 void Player::update(sf::RenderWindow& tv_, float dt_)
 {
-	std::string_view animName = toString(getStateEnum(fsm.getStateVariant()));
-	if (animName.data() == "Dead")
-	{
-		// indicate to owning code  I am dead and do not render
-		std::cout << "Game Over" << std::endl;
-		return;
-	}
 
 	if (isJumping())
 	{
@@ -103,11 +77,6 @@ void Player::update(sf::RenderWindow& tv_, float dt_)
 		recover();
 	}
 
-	if (fsm.getStateName().data() != getCurrAnimName())
-	{
-		setCurrAnimName(fsm.getStateName().data());
-		setFrameIndex(0);
-	}
 	AnimObject::update(tv_, dt_);
 }
 
@@ -123,7 +92,8 @@ void Player::walk()
 {
 	setVel({ (isFacingLeft() ? -300.f : 300.f),getVel().y});
 	dispatch(fsm, EventStartedMoving{});
-	beginTransitioning();
+	if (getCurrAnimName() == "StartedMoving")
+		beginTransitioning();
 }
 void Player::stopMoving()
 {
@@ -166,5 +136,10 @@ void Player::makeTransition()
 {
 	readyToTransition = false;
 	dispatch(fsm, EventTransEnd{});
+}
+
+std::string Player::getFSMState()
+{
+	return toString(getStateEnum(fsm.getStateVariant())).data();
 }
 

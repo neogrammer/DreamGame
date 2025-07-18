@@ -20,7 +20,7 @@ class AnimObject : public GameObject
 
 
 	bool transitioning{ false };
-	float transitionDelay{ 0.3f };
+	float transitionDelay{ 0.1f };
 	float transitionElapsed{ 0.f };
 
 
@@ -64,6 +64,7 @@ public:
 	bool isReadyToTransition();
 	bool beginTransitioning();
 	virtual void makeTransition() = 0;
+	virtual std::string getFSMState() = 0;
 	void setFrameIndex(int idx_);
 	std::unique_ptr<Animator> animator;
 };

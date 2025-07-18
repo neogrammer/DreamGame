@@ -264,53 +264,20 @@ void AnimObject::addFrame(const std::string& name_, const sf::Vector2f& offset_,
 void AnimObject::animate()
 {
 	frameIndex++;
-	if (isFacingLeft() && !uniDirectional && !onlyRightTexture)
+	const std::string& dir = uniDirectional ? "Uni" : (isFacingLeft() ? ((onlyRightTexture) ? "Right" : "Left") : "Right");
+
+	if (frameIndex >= texRects[currAnim][dir].size())
 	{
-		if (frameIndex >= texRects[currAnim]["Left"].size())
-		{
-			if (repeats[currAnim][0])
-				frameIndex = 0;
-			else
-				frameIndex = texRects[currAnim]["Left"].size() - 1;
-		}
+		if (repeats[currAnim][0])
+			frameIndex = 0;
 		else
-		{
-			setRect(currAnim, "Left", (int)frameIndex);
-		}
+			frameIndex = texRects[currAnim][dir].size() - 1;
 	}
-	else if (!uniDirectional)
-	{
-		if (frameIndex >= texRects[currAnim]["Right"].size())
-		{
-			if (repeats[currAnim][0])
-				frameIndex = 0;
-			else
-				frameIndex = texRects[currAnim]["Right"].size() - 1;
-		}
-		else
-		{
-			setRect(currAnim, "Right", (int)frameIndex);
-		}
-	}
-	else if (uniDirectional)
-	{
-		if (frameIndex >= texRects[currAnim]["Uni"].size())
-		{
-			if (repeats[currAnim][0])
-				frameIndex = 0;
-			else
-				frameIndex = texRects[currAnim]["Uni"].size() - 1;
-		}
-		else
-		{
-			setRect(currAnim, "Uni", (int)frameIndex);
-		}
-	}
+	setRect(currAnim, dir, (int)frameIndex);
 }
 
 void AnimObject::addFrames(const std::string& filename)
 {
-
 	std::fstream iFile{ filename };
 
 	if (iFile.is_open())
@@ -333,8 +300,6 @@ void AnimObject::addFrames(const std::string& filename)
 		{
 			std::cout << "Animation file not being read correctly" << std::endl;
 		}
-		
-
 		
 		for (int a = 0; a < numAnims; a++)
 		{
@@ -359,9 +324,6 @@ void AnimObject::addFrames(const std::string& filename)
 
 			iFile >> dir;
 			iFile >> numFrames;
-
-
-	
 
 			std::vector<sf::Vector2f> offs{};
 
@@ -426,14 +388,6 @@ void AnimObject::addFrames(const std::string& filename)
 					tmp.size.x = (int)animSize.x;
 					tmp.size.y = (int)animSize.y;
 					recs.emplace_back(tmp);
-					/*if (firstRow)
-					{
-						if (x + startCol >= numCols - 1)
-						{
-							firstRow = false;
-							break;
-						}
-					}*/
 				}
 			}
 
@@ -467,11 +421,11 @@ void AnimObject::setRect(const std::string& anim, const std::string& dir, int id
 
 	if (idx >= texRects[anim][dir].size())
 	{
-		idx = 0;
+		return;
 	}
 
 	GameObject::setRect(texRects[anim][dir][idx]);
-	setFrameIndex(idx);
+	//setFrameIndex(idx);
 }
 
 AnimObject::AnimObject()
@@ -494,6 +448,15 @@ AnimObject::AnimObject(const std::string& filename)
 
 void AnimObject::render(sf::RenderWindow& tv_)
 {
+	if (currAnim != getFSMState())
+	{
+		const std::string& dir = uniDirectional ? "Uni" : (isFacingLeft() ? ((onlyRightTexture) ? "Right" : "Left") : "Right");
+
+		currAnim = getFSMState();
+		frameIndex = 0;
+		setRect(currAnim, dir, 0);
+	}
+
 	if (facingLeft && !uniDirectional && onlyRightTexture)
 	{
 		auto old = getRect();
@@ -504,28 +467,16 @@ void AnimObject::render(sf::RenderWindow& tv_)
 		GameObject::render(tv_);
 		GameObject::setRect(old);
 	}
-	else if (facingLeft && !uniDirectional && !onlyRightTexture)
-	{
 
-		setRect(currAnim, "Left", (int)frameIndex);
-		GameObject::render(tv_);
-	}
-	else
-	{
-		if (!uniDirectional)
-			setRect(currAnim, "Right", (int)frameIndex);
-		else
-			setRect(currAnim, "Uni", (int)frameIndex);
+	GameObject::render(tv_);
 
-		GameObject::render(tv_);
-	}
 }
 
 void AnimObject::update(sf::RenderWindow& tv_, float dt_)
 {
 
 	// if not trying to transition out and not the last frame yet, keep animating
-	if (transitioning && frameIndex >= texRects[currAnim][((uniDirectional) ? "Uni" : ((isFacingLeft()) ? "Left" : "Right"))].size() - 1)
+	if (transitioning && frameIndex >= texRects[currAnim][((uniDirectional) ? "Uni" : ((isFacingLeft()) ? ((onlyRightTexture) ? "Right" : "Left") : "Right"))].size() - 1)
 	{
 		// we are now transitioning and on the last frame
 		transitionElapsed += dt_;
@@ -583,6 +534,6 @@ bool AnimObject::beginTransitioning()
 
 void AnimObject::setFrameIndex(int idx_)
 {
-	if (idx_ < texRects[currAnim][isFacingLeft() ? "Left" : "Right"].size())
+	if (idx_ < texRects[currAnim][((uniDirectional) ? "Uni" : ((isFacingLeft()) ? ((onlyRightTexture) ? "Right" : "Left") : "Right"))].size() && idx_ >= 0)
 		frameIndex = idx_;
 }
