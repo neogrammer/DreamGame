@@ -4,10 +4,10 @@
 #include <string>
 #include <scenes/Scene.h>
 #include <resources/Cfg.h>
-
+class SceneMgr;
 class TitleScene : public Scene {
 public:
-    TitleScene() : Scene(scn::Name::TITLE) {}
+    TitleScene(SceneMgr* sceneMgr_);
 
     void handleEvent(const sf::Event&) override;
     void update(sf::RenderWindow& window, float dt) override;

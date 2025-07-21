@@ -1,4 +1,8 @@
 #include <scenes/MenuScene.h>
+#include <scenes/SceneMgr.h>
+MenuScene::MenuScene(SceneMgr* sceneMgr_) : Scene(sceneMgr_, scn::Name::INVARIANT)
+{
+}
 
 void MenuScene::handleEvent(const sf::Event&)
 {
@@ -26,6 +30,5 @@ void MenuScene::render(sf::RenderWindow& window)
 
 void MenuScene::onEnter()
 {
-    sceneName = scn::Name::TITLE;
     nextScene = sceneName;
 }

@@ -20,6 +20,20 @@ void GameObject::setPosition(sf::Vector2f position)
 	sf::Sprite::setPosition(position);
 }
 
+void GameObject::copyOver(const GameObject& o)
+{
+	mTexID = o.mTexID;
+	mPos = o.mPos;
+	mVel = o.mVel;
+	mOff = o.mOff;
+	mSize = o.mSize;
+	mRect = o.mRect;
+	mVisible = o.mVisible;
+	mAlive = o.mAlive;
+	mPrevPos = o.mPrevPos;
+	mPrevVel = o.mPrevVel;
+}
+
 void GameObject::move(sf::Vector2f amt)
 {
 	setPos(getPos() + amt);
@@ -135,7 +149,41 @@ GameObject::GameObject(const GameObject& o)
 	// copy o's fields into this->fields
 }
 
+GameObject::GameObject(GameObject& o)
+	: sf::Sprite{ Cfg::textures.get(o.mTexID) }
+	, mTexID{ o.mTexID }
+	, mPos{ o.mPos }
+	, mVel{ o.mVel }, mOff{ o.mOff }
+	, mSize{ o.mSize }, mRect{ o.mRect }
+	, mVisible{ o.mVisible }
+	, mAlive{ o.mAlive }
+	, mPrevPos{ o.mPrevPos }
+	, mPrevVel{ o.mPrevVel }
+{
+	// copy o's fields into this->fields
+}
+
+
 GameObject& GameObject::operator=(const GameObject& o)
+{
+	// copy o's fields into this->fields
+	mTexID = o.mTexID;
+	mPos = o.mPos;
+	mVel = o.mVel;
+	mOff = o.mOff;
+	mSize = o.mSize;
+	mRect = o.mRect;
+	mVisible = o.mVisible;
+	mAlive = o.mAlive;
+	mPrevPos = o.mPrevPos;
+	mPrevVel = o.mPrevVel;
+
+	// TODO: insert return statement here
+	return *this;
+}
+
+
+GameObject& GameObject::operator=(GameObject& o)
 {
 	// copy o's fields into this->fields
 	mTexID = o.mTexID;

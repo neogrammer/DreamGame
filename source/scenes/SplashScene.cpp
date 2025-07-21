@@ -1,7 +1,7 @@
 #include <scenes/SplashScene.h>
-
-SplashScene::SplashScene()
-: Scene{ scn::Name::SPLASH }
+#include <scenes/SceneMgr.h>
+SplashScene::SplashScene(SceneMgr* sceneMgr_)
+: Scene{ sceneMgr_, scn::Name::SPLASH }
 {
 
 }
@@ -45,5 +45,4 @@ void SplashScene::render(sf::RenderWindow& window)
 void SplashScene::onEnter()
 {
     sceneName = scn::Name::SPLASH;
-    nextScene = sceneName;
 }

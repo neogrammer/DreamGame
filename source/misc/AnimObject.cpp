@@ -511,7 +511,7 @@ void AnimObject::render(sf::RenderWindow& tv_)
 			}
 		}
 		
-		setRect(currAnim, dir, frameIndex);
+		setRect(currAnim, dir, (int)frameIndex);
 	}
 
 	if (facingLeft && !uniDirectional && onlyRightTexture)

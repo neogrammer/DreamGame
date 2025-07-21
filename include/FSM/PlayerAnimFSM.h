@@ -1,11 +1,9 @@
 #ifndef PLAYERANIMFSM_H__
 #define PLAYERANIMFSM_H__
-//#include <FSM/DuckFold.h>
 #include <optional>
 #include <type_traits>
 #include <variant>
 #include <iostream>
-//#include <FSM/StateUtil.h>
 #include <FSM/Events.h>
 #include <FSM/FSM.h>
 
@@ -101,37 +99,5 @@ public:
 		return std::nullopt;     // ignore
 	}
 
-	// dead state has no transitions
-
-	//constexpr StateEnum getStateEnum() const
-	//{
-	//	if (std::holds_alternative<IdleState>(state_)) return StateEnum::Idle;
-	//	else if (std::holds_alternative<HitState>(state_)) return StateEnum::Hit;
-	//	else if (std::holds_alternative<DyingState>(state_)) return StateEnum::Dying;
-	//	else if (std::holds_alternative<DeadState>(state_)) return StateEnum::Dead;
-	//	else if (std::holds_alternative<StartedMovingState>(state_)) return StateEnum::StartedMoving;
-	//	else if (std::holds_alternative<MovingState>(state_)) return StateEnum::Moving;
-	//	else if (std::holds_alternative<StartedMovingAndShootingState>(state_)) return StateEnum::StartedMovingAndShooting;
-	//	else if (std::holds_alternative<MovingAndShootingState>(state_)) return StateEnum::MovingAndShooting;
-	//	else if (std::holds_alternative<JumpingState>(state_)) return StateEnum::Jumping;
-	//	else if (std::holds_alternative<FallingState>(state_)) return StateEnum::Falling;
-	//	else if (std::holds_alternative<LandingState>(state_)) return StateEnum::Landing;
-	//	else if (std::holds_alternative<ShootingState>(state_)) return StateEnum::Shooting;
-	//	else if (std::holds_alternative<JumpingAndShootingState>(state_)) return StateEnum::JumpingAndShooting;
-	//	else if (std::holds_alternative<FallingAndShootingState>(state_)) return StateEnum::FallingAndShooting;
-	//	else if (std::holds_alternative<LandingAndShootingState>(state_)) return StateEnum::LandingAndShooting;
-	//	else return StateEnum::None;
-	//}
-
-	//constexpr std::string_view getStateName() const
-	//{
-	//	return toString(getStateEnum());
-	//}
-
-	//template<typename State, typename Event>
-	//std::optional<PlayerAnimVar> On_Event(State&, const Event&)
-	//{
-	//	return std::nullopt;     // ignore
-	//}
 };
 #endif

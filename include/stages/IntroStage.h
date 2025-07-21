@@ -2,10 +2,10 @@
 #define INTROSTAGE_H__
 
 #include <stages/Stage.h>
+#include <resources/Cfg.h>
 
 class IntroStage : public Stage
 {
-	
 
 public:
 	IntroStage();
@@ -27,6 +27,8 @@ public:
 
 	void onEnter();  // called when scene becomes active
 	void onExit();   // called when scene deactivates
+
+	void updateDynamicElements(float dt) override final;
 
 };
 

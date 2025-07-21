@@ -5,16 +5,25 @@
 #include <string>
 #include <fstream>
 #include <scenes/SceneName.h>
-using namespace scn;
+
+class SceneMgr;
 // Abstract base Scene class
+
+using namespace scn;
+
 class Scene {
+    
+protected:
+    SceneMgr* manager{ nullptr };
+
 public:
     scn::Name sceneName = scn::Name::INVARIANT;
     scn::Name nextScene = scn::Name::INVARIANT;
+
+
 public:
-    Scene(scn::Name sceneName_ = scn::Name::INVARIANT) : sceneName{ sceneName_ } 
-    {
-    }
+    Scene(SceneMgr* sceneMgr_, scn::Name sceneName_ = scn::Name::INVARIANT);
+    
 
     virtual ~Scene() = default;
     virtual void handleEvent(const sf::Event& event) = 0;

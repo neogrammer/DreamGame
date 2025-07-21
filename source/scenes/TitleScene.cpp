@@ -1,4 +1,9 @@
 #include <scenes/TitleScene.h>
+#include <scenes/SceneMgr.h>
+
+TitleScene::TitleScene(SceneMgr* sceneMgr_) : Scene{ sceneMgr_, scn::Name::TITLE } 
+{
+}
 
 void TitleScene::handleEvent(const sf::Event& evt_)
 {
@@ -33,6 +38,5 @@ void TitleScene::render(sf::RenderWindow& window)
 
 void TitleScene::onEnter()
 {
-    sceneName = scn::Name::TITLE;
     nextScene = sceneName;
 }

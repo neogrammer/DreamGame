@@ -4,10 +4,10 @@
 #include <string>
 #include <scenes/Scene.h>
 #include <resources/Cfg.h>
-
+class SceneMgr;
 class PausedScene : public Scene {
 public:
-    PausedScene() : Scene(scn::Name::INVARIANT) {}
+    PausedScene(SceneMgr* sceneMgr_);
 
     void handleEvent(const sf::Event&) override;
     void update(sf::RenderWindow& window, float dt) override;

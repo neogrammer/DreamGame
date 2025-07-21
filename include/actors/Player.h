@@ -4,10 +4,11 @@
 #include <memory>
 #include <FSM/PlayerAnimFSM.h>
 
+
 class Player : public AnimObject
 {
 	FSM_Player fsm;
-	float shootDelay{ 0.15f };
+	float shootDelay{ 0.2f };
 	float shootElapsed{ 0.f };
 	float shootOnCooldown{ false };
 public:
@@ -52,6 +53,10 @@ public:
 
 	void makeTransition() override final;
 	std::string getFSMState() override final;
+
+	FSM_Player& getFSM();
+
+
 };
 
 

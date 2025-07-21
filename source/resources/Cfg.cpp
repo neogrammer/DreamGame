@@ -1,5 +1,6 @@
 #include <resources/Cfg.h>
 #include <stages/IntroStage.h>
+#include <stages/Stage.h>
 
 ResourceManager<sf::Texture, Cfg::Textures> Cfg::textures = {};
 ResourceManager<sf::Font, Cfg::Fonts> Cfg::fonts = {};

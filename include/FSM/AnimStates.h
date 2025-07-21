@@ -22,6 +22,8 @@ struct DeadState {};
 struct HitState {};
 
 
+using PlayerAnimVar = std::variant<IdleState, StartedMovingState, DeadState, MovingState, StartedMovingAndShootingState, ShootingState, MovingAndShootingState, JumpingState, FallingState, LandingState, JumpingAndShootingState, FallingAndShootingState, LandingAndShootingState, DyingState, HitState>;
+
 
 enum class StateEnum {
 	Idle,
@@ -67,6 +69,8 @@ static const std::string_view toString(StateEnum s)
 	return "None"; // fallback
 }
 
+
+
 template <typename StateVariant>
 constexpr StateEnum getStateEnum(StateVariant state_)
 {
@@ -86,9 +90,7 @@ constexpr StateEnum getStateEnum(StateVariant state_)
 	else if (std::holds_alternative<FallingAndShootingState>(state_)) return StateEnum::FallingAndShooting;
 	else if (std::holds_alternative<LandingAndShootingState>(state_)) return StateEnum::LandingAndShooting;
 	else return StateEnum::None;
-}
+};
 
-
-using PlayerAnimVar = std::variant<IdleState, StartedMovingState, DeadState,  MovingState, StartedMovingAndShootingState, ShootingState, MovingAndShootingState, JumpingState, FallingState, LandingState, JumpingAndShootingState, FallingAndShootingState, LandingAndShootingState, DyingState, HitState>;
 
 #endif

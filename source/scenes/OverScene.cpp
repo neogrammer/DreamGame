@@ -1,4 +1,8 @@
 #include <scenes/OverScene.h>
+#include <scenes/SceneMgr.h>
+OverScene::OverScene(SceneMgr* sceneMgr_) : Scene(sceneMgr_, scn::Name::INVARIANT) 
+{
+}
 
 void OverScene::handleEvent(const sf::Event&)
 {
@@ -26,6 +30,5 @@ void OverScene::render(sf::RenderWindow& window)
 
 void OverScene::onEnter()
 {
-    sceneName = scn::Name::TITLE;
     nextScene = sceneName;
 }

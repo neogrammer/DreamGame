@@ -1,5 +1,5 @@
-#ifndef GAMEOBJECT_H_
-#define GAMEOBJECT_H_
+#ifndef GAMEOBJECT_H__
+#define GAMEOBJECT_H__
 #include <SFML/Graphics.hpp>
 #include <resources/Cfg.h>
 #include <iostream>
@@ -22,7 +22,7 @@ class GameObject : public sf::Sprite
 
 	void setPosition(sf::Vector2f position);
 protected:
-
+	void copyOver(const GameObject& o);
 
 	
 
@@ -34,18 +34,23 @@ protected:
 
 	void updatePrevPos();
 	void updatePrevVel();
+public:
 
 	GameObject(Cfg::Textures texID_ = Cfg::Textures::UNKNOWN, sf::Vector2f pos_ = { 0.f,0.f }, sf::Vector2f vel_ = { 0.f,0.f }, sf::Vector2f off_ = { 0.f,0.f }, sf::Vector2f size_ = { 0.f,0.f }, sf::IntRect rect_ = { {0,0},{0,0} });
-	virtual ~GameObject();
+	
 	GameObject(const GameObject& o);
+	GameObject(GameObject& o);
+
 	GameObject& operator=(const GameObject& o);
+	GameObject& operator=(GameObject& o);
+
 	GameObject(GameObject&& o) noexcept;
 	GameObject& operator=(GameObject&& o) noexcept;
 
 	
 
 public:
-
+	virtual ~GameObject();
 	// callable by anyone
 	void setAlive(bool cond_);
 	void setVisible(bool cond_);

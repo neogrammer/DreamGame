@@ -5,13 +5,13 @@
 #include "ResourceMgr.h"
 #include <vector>
 #include <SFML/Audio.hpp>
-#include <stages/Stage.h>
 #include <stages/StageName.h>
 #include <map>
 #include <memory>
 #include <utility>
-class IntroStage;
 
+class Stage;
+class IntroStage;
 class Cfg
 {
 public:

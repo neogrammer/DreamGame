@@ -1,25 +1,45 @@
 #include <scenes/SceneMgr.h>
+#include <scenes/SceneName.h>
 #include <scenes/SplashScene.h>
 #include <scenes/TitleScene.h>
 #include <scenes/PlayScene.h>
 #include <scenes/MenuScene.h>
 #include <scenes/PausedScene.h>
 #include <scenes/OverScene.h>
-#include <scenes/SceneName.h>
+#include <stages/StageName.h>
+#include <stages/IntroStage.h>
+
+
 #include <iostream>
 
 SceneMgr::SceneMgr()
     : scenes{}
+    , stages{}
 {
+    stages[stg::Name::INTRO] = std::make_shared<IntroStage>();
 
-
-    scenes.emplace(scn::Name::SPLASH, std::make_shared<SplashScene>());
-    scenes.emplace(scn::Name::TITLE, std::make_shared<TitleScene>());
-    scenes.emplace(scn::Name::PLAY, std::make_shared<PlayScene>());
+    scenes.emplace(scn::Name::SPLASH, std::make_shared<SplashScene>(this));
+    scenes.emplace(scn::Name::TITLE, std::make_shared<TitleScene>(this));
+    scenes.emplace(scn::Name::PLAY, std::make_shared<PlayScene>(this));
+    std::dynamic_pointer_cast<PlayScene>(scenes[scn::Name::PLAY])->switchStage(stg::Name::INTRO);
     setScene(scn::Name::SPLASH);
 }
 
-void SceneMgr::addScene(const scn::Name& name, const std::shared_ptr<Scene>& scene) {
+std::shared_ptr<Stage> SceneMgr::getStage(stg::Name stageName_)
+{
+    auto found = stages.find(stageName_);
+    if (found != stages.end())
+    {
+        // found
+        return stages[stageName_];
+
+    }
+    std::cout << "Picking IntroStage by default!  Not Good!" << std::endl;
+    return stages[stg::Name::INTRO];
+}
+
+void SceneMgr::addScene(const scn::Name& name, const std::shared_ptr<Scene>& scene) 
+{
     scenes[name] = scene;
 }
 

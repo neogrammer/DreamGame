@@ -4,10 +4,11 @@
 #include <string>
 #include <scenes/Scene.h>
 #include <resources/Cfg.h>
-
+class SceneMgr;
 class OverScene : public Scene {
 public:
-    OverScene() : Scene(scn::Name::INVARIANT) {}
+    OverScene(SceneMgr* sceneMgr_);
+
 
     void handleEvent(const sf::Event&) override;
     void update(sf::RenderWindow& window, float dt) override;

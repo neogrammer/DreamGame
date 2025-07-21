@@ -53,12 +53,6 @@ void Player::update(sf::RenderWindow& tv_, float dt_)
 	else if (isFalling() || isFallingAndShooting())
 	{
 		setVel({ getVel().x, getVel().y + 2400.f * dt_ });
-		if (getPos().y >= 900.f - 170.f - 38.f)
-		{
-			land();
-			setVel({ getVel().x, 0.f });
-			setPos({ getPos().x , 900.f - 170.f - 38.f });
-		}
 	}
 
 
@@ -92,8 +86,13 @@ void Player::walk()
 {
 	setVel({ (isFacingLeft() ? -300.f : 300.f),getVel().y});
 	dispatch(fsm, EventStartedMoving{});
-	if (getCurrAnimName() == "StartedMoving")
+	if (getCurrAnimName() == "Landing") {
+		dispatch(fsm, EventTransEnd{}, EventStartedMoving{});
 		beginTransitioning();
+	}
+	else if (getCurrAnimName() == "StartedMoving") {
+		beginTransitioning();
+	}
 }
 void Player::stopMoving()
 {
@@ -120,8 +119,11 @@ void Player::fall()
 }
 void Player::land()
 {
-	dispatch(fsm, EventLanded{});
-	beginTransitioning();
+	if (getCurrAnimName() == "Falling" || getCurrAnimName() == "FallingAndShooting")
+	{
+		dispatch(fsm, EventLanded{});
+		beginTransitioning();
+	}
 }
 void Player::hit()
 {
@@ -141,5 +143,10 @@ void Player::makeTransition()
 std::string Player::getFSMState()
 {
 	return toString(getStateEnum(fsm.getStateVariant())).data();
+}
+
+FSM_Player& Player::getFSM()
+{
+	return fsm;
 }
 

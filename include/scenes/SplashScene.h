@@ -5,11 +5,12 @@
 #include <scenes/Scene.h>
 #include <resources/Cfg.h>
 
+class SceneMgr;
 class SplashScene : public Scene 
 {
 
 public:
-    SplashScene();
+    SplashScene(SceneMgr* sceneMgr_);
 
 
     void handleEvent(const sf::Event&) override;

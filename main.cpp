@@ -8,6 +8,7 @@
 #include <scenes/SceneMgr.h>
 #include <misc/Camera.h>
 
+
 float transTimeElapsed;
 
 class DreamGameApp
@@ -36,6 +37,7 @@ class DreamGameApp
 public: 
 	void run()
 	{
+
 		tv.create(sf::VideoMode{{1600U,900U},32U}, "DreamGame", sf::State::Windowed);
 		tv.setVerticalSyncEnabled(true);
 		tv.setMaximumSize(sf::Vector2u{ 1600u,900u });
@@ -92,11 +94,13 @@ public:
 
 int main()
 {
+
+
 	Cfg::Initialize();
 
 	DreamGameApp game;
-
+	
 	game.run();
 
-	return 69;
+	return 0;
 }

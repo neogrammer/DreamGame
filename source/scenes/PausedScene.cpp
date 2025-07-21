@@ -1,4 +1,8 @@
 #include <scenes/PausedScene.h>
+#include <scenes/SceneMgr.h>
+PausedScene::PausedScene(SceneMgr* sceneMgr_) : Scene(sceneMgr_, scn::Name::INVARIANT) 
+{
+}
 
 void PausedScene::handleEvent(const sf::Event&)
 {
@@ -26,6 +30,5 @@ void PausedScene::render(sf::RenderWindow& window)
 
 void PausedScene::onEnter()
 {
-    sceneName = scn::Name::TITLE;
     nextScene = sceneName;
 }

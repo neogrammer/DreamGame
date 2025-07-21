@@ -4,9 +4,11 @@
 #include <string>
 #include <scenes/Scene.h>
 #include <resources/Cfg.h>
+class SceneMgr;
 class MenuScene : public Scene {
 public:
-    MenuScene() : Scene(scn::Name::INVARIANT) {}
+    MenuScene(SceneMgr* sceneMgr_);
+   
 
     void handleEvent(const sf::Event&) override;
     void update(sf::RenderWindow& window, float dt) override;

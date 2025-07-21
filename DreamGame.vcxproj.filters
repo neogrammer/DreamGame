@@ -67,6 +67,15 @@
     <Filter Include="Header Files\FSM\derived">
       <UniqueIdentifier>{75b07a88-d665-40b5-b9a3-e9161ec96562}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\tilemap">
+      <UniqueIdentifier>{46ae4c6b-c0bd-4bb8-b254-2d347190a23c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\tilemap">
+      <UniqueIdentifier>{d0ff417a-1ff2-4fe5-96bc-b85721d474df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\tilesets">
+      <UniqueIdentifier>{f699f1c8-3774-42e1-80d7-85e023d8fdda}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Font Include="assets\fonts\Crusty.ttf">
@@ -134,6 +143,18 @@
     <ClCompile Include="source\FSM\FSMEvent.cpp">
       <Filter>Source Files\FSM</Filter>
     </ClCompile>
+    <ClCompile Include="source\tilemap\Tile.cpp">
+      <Filter>Source Files\tilemap</Filter>
+    </ClCompile>
+    <ClCompile Include="source\tilemap\Tilemap.cpp">
+      <Filter>Source Files\tilemap</Filter>
+    </ClCompile>
+    <ClCompile Include="source\tilemap\Tileset.cpp">
+      <Filter>Source Files\tilemap</Filter>
+    </ClCompile>
+    <ClCompile Include="source\misc\Phys.cpp">
+      <Filter>Source Files\misc</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\stages\IntroStage.h">
@@ -174,9 +195,6 @@
     </ClInclude>
     <ClInclude Include="include\scenes\SceneName.h">
       <Filter>Header Files\scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="include\stages\StageName.h">
-      <Filter>Header Files\stages</Filter>
     </ClInclude>
     <ClInclude Include="include\actors\Player.h">
       <Filter>Header Files\actors</Filter>
@@ -220,6 +238,21 @@
     <ClInclude Include="include\FSM\Events.h">
       <Filter>Header Files\FSM</Filter>
     </ClInclude>
+    <ClInclude Include="include\tilemap\Tile.h">
+      <Filter>Header Files\tilemap</Filter>
+    </ClInclude>
+    <ClInclude Include="include\tilemap\Tilemap.h">
+      <Filter>Header Files\tilemap</Filter>
+    </ClInclude>
+    <ClInclude Include="include\tilemap\Tileset.h">
+      <Filter>Header Files\tilemap</Filter>
+    </ClInclude>
+    <ClInclude Include="include\stages\StageName.h">
+      <Filter>Header Files\stages</Filter>
+    </ClInclude>
+    <ClInclude Include="include\misc\Phys.h">
+      <Filter>Header Files\misc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\textures\tilesets\Tiles.png">
@@ -241,6 +274,9 @@
     </None>
     <None Include="assets\anims\megaman.anm">
       <Filter>Resource Files\anims</Filter>
+    </None>
+    <None Include="assets\tilesets\Intro.tst">
+      <Filter>Resource Files\tilesets</Filter>
     </None>
   </ItemGroup>
 </Project>
