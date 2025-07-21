@@ -334,9 +334,12 @@ void AnimObject::addFrames(const std::string& filename)
 			recs.reserve(numFrames);
 			
 			sf::Vector2f animSize{};
+			sf::Vector2f recSize{};
+
 			std::string texName; 
 
 			iFile >> animSize.x >> animSize.y;
+			iFile >> recSize.x >> recSize.y;
 			iFile >> texName;
 
 			
@@ -377,16 +380,16 @@ void AnimObject::addFrames(const std::string& filename)
 					sf::IntRect tmp{};
 					if (firstRow)
 					{	
-						tmp.position.x = (int)(startCol * animSize.x) + (int)(x * animSize.x);
-						tmp.position.y = (int)(startRow * animSize.y) + (int)(y * animSize.y);
+						tmp.position.x = (int)(startCol * recSize.x) + (int)(x * recSize.x);
+						tmp.position.y = (int)(startRow * recSize.y) + (int)(y * recSize.y);
 					}
 					else
 					{		
-						tmp.position.x = (int)(x * animSize.x);
-						tmp.position.y = (int)(startRow * animSize.y) + (int)(y * animSize.y);
+						tmp.position.x = (int)(x * recSize.x);
+						tmp.position.y = (int)(startRow * recSize.y) + (int)(y * recSize.y);
 					}
-					tmp.size.x = (int)animSize.x;
-					tmp.size.y = (int)animSize.y;
+					tmp.size.x = (int)recSize.x;
+					tmp.size.y = (int)recSize.y;
 					recs.emplace_back(tmp);
 				}
 			}
@@ -524,8 +527,10 @@ void AnimObject::render(sf::RenderWindow& tv_)
 		GameObject::render(tv_);
 		GameObject::setRect(old);
 	}
-
-	GameObject::render(tv_);
+	else
+	{
+		GameObject::render(tv_);
+	}
 
 }
 

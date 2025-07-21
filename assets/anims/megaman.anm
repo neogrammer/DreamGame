@@ -1,85 +1,85 @@
 28 0
- Idle 1 300 1 3 130 160 MegamanSheet130x160
- 0 0 0 0 0 0
+ Idle 1 300 1 3 52 63 130 160 MegamanSheet130x160
+ 43 68 43 68 43 68
  17 3 1 0 1 
- StartedMoving 0 100 1 2 130 160 MegamanSheet130x160
- 0 0 0 0
+ StartedMoving 0 100 1 2 52 63 130 160 MegamanSheet130x160
+ 43 68 43 68
  17 2 1 0 2
- Moving 1 100 1 10 130 160 MegamanSheet130x160
- 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ Moving 1 100 1 10 52 63 130 160 MegamanSheet130x160
+ 43 68 43 68 43 68 43 68 43 68 43 68 43 68 43 68 43 68 43 68
  17 10 1 2 2
- StartedMovingAndShooting 0 100 1 2  130 160 MegamanSheet130x160
- 0 0 0 0
+ StartedMovingAndShooting 0 100 1 2 52 63 130 160 MegamanSheet130x160
+ 43 68 43 68
  17 2 1 0 3
- MovingAndShooting 1 100 1 10 130 160 MegamanSheet130x160 
- 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ MovingAndShooting 1 100 1 10 52 63 130 160 MegamanSheet130x160 
+ 43 68 43 68 43 68 43 68 43 68 43 68 43 68 43 68 43 68 43 68
  17 10 1 2 3
- Jumping 0 200 1 4 130 160 MegamanSheet130x160
- 0 0 0 0 0 0 0 0 
+ Jumping 0 200 1 4 52 63 130 160 MegamanSheet130x160
+ 43 68 43 68 43 68 43 68
  17 4 1 0 5
- Falling 0 200 1 4 130 160 MegamanSheet130x160
- 0 0 0 0 0 0 0 0
+ Falling 0 200 1 4 52 63 130 160 MegamanSheet130x160
+ 43 68 43 68 43 68 43 68
  17 4 1 4 5
- Landing 0 100 1 3 130 160 MegamanSheet130x160
- 0 0 0 0 0 0
+ Landing 0 100 1 3 52 63 130 160 MegamanSheet130x160
+ 43 68 43 68 43 68
  17 3 1 8 5
- Shooting 0 333 1 1 130 160 MegamanSheet130x160
- 0 0
+ Shooting 0 333 1 1 52 63 130 160 MegamanSheet130x160
+ 43 68
  17 1 1 12 1
- JumpingAndShooting 0 200 1 4 130 160 MegamanSheet130x160
- 0 0 0 0 0 0 0 0
+ JumpingAndShooting 0 200 1 4 52 63 130 160 MegamanSheet130x160
+ 43 68 43 68 43 68 43 68
  17 4 1 0 6
- FallingAndShooting 0 200 1 4 130 160 MegamanSheet130x160
- 0 0 0 0 0 0 0 0
+ FallingAndShooting 0 200 1 4 52 63 130 160 MegamanSheet130x160
+ 43 68 43 68 43 68 43 68
  17 4 1 4 6
- LandingAndShooting 0 100 1 3 130 160 MegamanSheet130x160
- 0 0 0 0 0 0
+ LandingAndShooting 0 100 1 3 52 63 130 160 MegamanSheet130x160
+ 43 68 43 68 43 68
  17 3 1 8 6
- Hit 1 222 1 7 130 160 MegamanSheet130x160
- 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ Hit 1 222 1 7 52 63 130 160 MegamanSheet130x160
+ 43 68 43 68 43 68 43 68 43 68 43 68 43 68
  17 7 1 10 10
- Dying 0 222 1 5 130 160 MegamanSheet130x160
- 0 0 0 0 0 0 0 0 0 0
+ Dying 0 222 1 5 52 63 130 160 MegamanSheet130x160
+ 43 68 43 68 43 68 43 68 43 68
  17 5 1 10 11
- Idle 1 300 0 3 130 160 MegamanSheet130x160
- 0 0 0 0 0 0
+ Idle 1 300 0 3 52 63 130 160 MegamanSheet130x160
+ 43 68 43 68 43 68
  17 3 1 0 14 
- StartedMoving 0 100 0 2 130 160 MegamanSheet130x160
- 0 0 0 0
+ StartedMoving 0 100 0 2 52 63 130 160 MegamanSheet130x160
+ 43 68 43 68
  17 2 1 0 15
- Moving 1 100 0 10 130 160 MegamanSheet130x160
- 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ Moving 1 100 0 10 52 63 130 160 MegamanSheet130x160
+ 43 68 43 68 43 68 43 68 43 68 43 68 43 68 43 68 43 68 43 68
  17 10 1 2 15
- StartedMovingAndShooting 0 100 0 2  130 160 MegamanSheet130x160
+ StartedMovingAndShooting 0 100 0 2 52 63 130 160 MegamanSheet130x160
  0 0 0 0
  17 2 1 0 16
- MovingAndShooting 1 100 0 10 130 160 MegamanSheet130x160 
- 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ MovingAndShooting 1 100 0 10 52 63 130 160 MegamanSheet130x160 
+ 43 68 43 68 43 68 43 68 43 68 43 68 43 68 43 68 43 68 43 68
  17 10 1 2 16
- Jumping 0 200 0 4 130 160 MegamanSheet130x160
- 0 0 0 0 0 0 0 0 
+ Jumping 0 200 0 4 52 63 130 160 MegamanSheet130x160
+ 43 68 43 68 43 68 43 68
  17 4 1 0 18
- Falling 0 200 0 4 130 160 MegamanSheet130x160
- 0 0 0 0 0 0 0 0
+ Falling 0 200 0 4 52 63 130 160 MegamanSheet130x160
+ 43 68 43 68 43 68 43 68
  17 4 1 4 18
- Landing 0 100 0 3 130 160 MegamanSheet130x160
- 0 0 0 0 0 0
+ Landing 0 100 0 3 52 63 130 160 MegamanSheet130x160
+ 43 68 43 68 43 68
  17 3 1 8 18
- Shooting 0 333 0 1 130 160 MegamanSheet130x160
- 0 0
+ Shooting 0 333 0 1 52 63 130 160 MegamanSheet130x160
+ 43 68
  17 1 1 12 14
- JumpingAndShooting 0 200 0 4 130 160 MegamanSheet130x160
- 0 0 0 0 0 0 0 0
+ JumpingAndShooting 0 200 0 4 52 63 130 160 MegamanSheet130x160
+ 43 68 43 68 43 68 43 68
  17 4 1 0 19
- FallingAndShooting 0 200 0 4 130 160 MegamanSheet130x160
- 0 0 0 0 0 0 0 0
+ FallingAndShooting 0 200 0 4 52 63 130 160 MegamanSheet130x160
+ 43 68 43 68 43 68 43 68
  17 4 1 4 19
- LandingAndShooting 0 100 0 3 130 160 MegamanSheet130x160
- 0 0 0 0 0 0
+ LandingAndShooting 0 100 0 3 52 63 130 160 MegamanSheet130x160
+ 43 68 43 68 43 68
  17 3 1 8 19
- Hit 1 222 0 7 130 160 MegamanSheet130x160
- 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ Hit 1 222 0 7 52 63 130 160 MegamanSheet130x160
+ 43 68 43 68 43 68 43 68 43 68 43 68 43 68
  17 7 1 10 23
- Dying 0 222 0 5 130 160 MegamanSheet130x160
- 0 0 0 0 0 0 0 0 0 0
+ Dying 0 222 0 5 52 63 130 160 MegamanSheet130x160
+ 43 68 43 68 43 68 43 68 43 68
  17 5 1 10 24

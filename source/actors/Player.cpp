@@ -3,7 +3,7 @@
 #include <FSM/DuckFold.h>
 
 Player::Player()
-	: AnimObject{ Cfg::Textures::MegamanSheet130x160, {}, {}, {}, {130.f,160.f}, {{0,0},{130,160}} }
+	: AnimObject{ Cfg::Textures::MegamanSheet130x160, {}, {}, {43.f, 65.f}, {52.f,63.f}, {{0,0},{130,160}} }
 	, fsm{}
 {
 	addFrames("assets/anims/megaman.anm");
@@ -123,6 +123,7 @@ void Player::land()
 	{
 		dispatch(fsm, EventLanded{});
 		beginTransitioning();
+		setVel({ getVel().x, 0.f });
 	}
 }
 void Player::hit()

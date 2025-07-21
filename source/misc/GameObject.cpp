@@ -36,6 +36,7 @@ void GameObject::copyOver(const GameObject& o)
 
 void GameObject::move(sf::Vector2f amt)
 {
+	mPrevPos = getPos();
 	setPos(getPos() + amt);
 }
 
