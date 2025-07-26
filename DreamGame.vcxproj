@@ -24,6 +24,7 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="source\actors\Player.cpp" />
+    <ClCompile Include="source\actors\SmileyJoe.cpp" />
     <ClCompile Include="source\FSM\FSMEvent.cpp" />
     <ClCompile Include="source\misc\Animation.cpp" />
     <ClCompile Include="source\misc\Animator.cpp" />
@@ -49,12 +50,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\actors\Player.h" />
+    <ClInclude Include="include\actors\ShootableObject.h" />
+    <ClInclude Include="include\actors\SmileyJoe.h" />
     <ClInclude Include="include\FSM\DuckFold.h" />
     <ClInclude Include="include\FSM\Events.h" />
     <ClInclude Include="include\FSM\FSM.h" />
     <ClInclude Include="include\FSM\FSMEvent.h" />
     <ClInclude Include="include\FSM\PlayerAnimFSM.h" />
     <ClInclude Include="include\FSM\AnimStates.h" />
+    <ClInclude Include="include\FSM\SmileyJoeFSM.h" />
     <ClInclude Include="include\FSM\StateUtil.h" />
     <ClInclude Include="include\misc\Animation.h" />
     <ClInclude Include="include\misc\Animator.h" />
@@ -82,12 +86,14 @@
     <ClInclude Include="include\tilemap\Tileset.h" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="assets\textures\enemies\SmileyJoe1.png" />
     <Image Include="assets\textures\player\PlayerAtlas.png" />
     <Image Include="assets\textures\player\Vegeta.png" />
     <Image Include="assets\textures\player\vegeta_sheet.png" />
     <Image Include="assets\textures\tilesets\Tiles.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="assets\anims\enemies\SmileyJoe.anm" />
     <None Include="assets\anims\megaman.anm" />
     <None Include="assets\anims\player.anm" />
     <None Include="assets\tilesets\Intro.tst" />

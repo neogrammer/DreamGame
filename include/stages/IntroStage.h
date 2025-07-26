@@ -3,11 +3,18 @@
 
 #include <stages/Stage.h>
 #include <resources/Cfg.h>
+#include <memory>
+
+class FSM_SmileyJoe;
+class SmileyJoe;
+class Animator;
 
 class IntroStage : public Stage
 {
-
+	
 public:
+	std::unique_ptr<SmileyJoe> smiles;
+
 	IntroStage();
 	~IntroStage() override final;
 	IntroStage(const IntroStage&)  = delete;

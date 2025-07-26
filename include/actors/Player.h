@@ -2,16 +2,20 @@
 #define PLAYER_H__
 #include <misc/AnimObject.h>
 #include <memory>
-#include <FSM/PlayerAnimFSM.h>
 
+class FSM_Player;
 
 class Player : public AnimObject
 {
-	FSM_Player fsm;
+	std::unique_ptr<FSM_Player> fsm;
 	float shootDelay{ 0.2f };
 	float shootElapsed{ 0.f };
 	float shootOnCooldown{ false };
 public:
+	bool canSetInitialState{ true };
+	bool collisionOccurred{ false };
+	sf::FloatRect collisionRect{};
+
 	Player();
 	~Player() final override = default;
 	Player(const Player&) = default;
@@ -33,23 +37,24 @@ public:
 	void hit();
 	void recover();
 
-	inline bool isIdle()   const { return std::holds_alternative<IdleState>(fsm.getStateVariant()); }
-	inline bool isJumping()   const { return std::holds_alternative<JumpingState>(fsm.getStateVariant()); }
-	inline bool isMovingAndShooting()   const { return  std::holds_alternative<MovingAndShootingState>(fsm.getStateVariant()); }
-	inline bool isJumpingAndShooting()   const { return  std::holds_alternative<JumpingAndShootingState>(fsm.getStateVariant()); }
-	inline bool isMoving()   const { return std::holds_alternative<MovingState>(fsm.getStateVariant()); }
-	inline bool isFalling()   const { return std::holds_alternative<FallingState>(fsm.getStateVariant()); }
-	inline bool isFallingAndShooting()   const { return  std::holds_alternative<FallingAndShootingState>(fsm.getStateVariant()); }
-	inline bool isShooting()   const { return std::holds_alternative<ShootingState>(fsm.getStateVariant()); 	}
-	inline bool isRecovering()   const { return std::holds_alternative<HitState>(fsm.getStateVariant()); }
-	inline bool isDead()   const { return std::holds_alternative<DeadState>(fsm.getStateVariant()); }
-	inline bool isLanding()   const { return std::holds_alternative<LandingState>(fsm.getStateVariant()); }
-	inline bool isLandingAndShooting() const{ return std::holds_alternative<LandingAndShootingState>(fsm.getStateVariant()); }
+	bool isIdle()   const;				
+	bool isJumping()   const;			
+	bool isMovingAndShooting()   const;  
+	bool isJumpingAndShooting()   const; 
+	bool isMoving()   const;			    
+	bool isFalling()   const;		    
+	bool isFallingAndShooting()   const; 
+	bool isShooting()   const;		    
+	bool isRecovering()   const;         
+	bool isDead()   const;               
+	bool isLanding()   const;            
+	bool isLandingAndShooting() const;   
 
-	inline bool canJump()     const { return (isIdle() || isMoving() || isMovingAndShooting() || isShooting()); }
-	inline bool canWalk ()     const { return !isRecovering() || !isShooting(); }
-	inline bool canShoot()     const { return (!isRecovering() && !shootOnCooldown); }
+	bool canJump()     const;
+	bool canWalk()     const;
+	bool canShoot()     const;
 	
+	void setInitialState();
 
 	void makeTransition() override final;
 	std::string getFSMState() override final;

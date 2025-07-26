@@ -36,6 +36,11 @@ public:
 		return toString(getStateEnum<StateVariant>(state_));
 	}
 
+	void setInitialState(StateVariant&& newstate)
+	{
+		state_ = std::move(newstate);
+	}
+
 	
 
 };

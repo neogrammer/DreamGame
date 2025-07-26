@@ -3,6 +3,7 @@
 
 #include <variant>
 #include <string_view>
+#include <iostream>
 //#include <FSM/Events.h>
 
 struct IdleState {};
@@ -23,9 +24,9 @@ struct HitState {};
 
 
 using PlayerAnimVar = std::variant<IdleState, StartedMovingState, DeadState, MovingState, StartedMovingAndShootingState, ShootingState, MovingAndShootingState, JumpingState, FallingState, LandingState, JumpingAndShootingState, FallingAndShootingState, LandingAndShootingState, DyingState, HitState>;
-
-
-enum class StateEnum {
+using SmileyJoeAnimVar = std::variant<IdleState, MovingState, DyingState, HitState, DeadState>;
+	
+	enum class StateEnum {
 	Idle,
 	StartedMoving,
 	Moving,
@@ -44,6 +45,17 @@ enum class StateEnum {
 	Count,
 	None
 };
+
+	enum class SmileyJoeStateEnum
+	{
+		Idle,
+		Moving,
+		Hit,
+		Dying,
+		Dead,
+		Count,
+		None
+	};
 
 static const std::string_view toString(StateEnum s)
 {
@@ -65,6 +77,21 @@ static const std::string_view toString(StateEnum s)
 	case StateEnum::Dying: return "Dying";
 	case StateEnum::Dead: return "Dead";
 	case StateEnum::None: return "None";
+	}
+	return "None"; // fallback
+}
+
+
+static const std::string_view toString(SmileyJoeStateEnum s)
+{
+	switch (s)
+	{
+	case SmileyJoeStateEnum::Idle: return "Idle";
+	case SmileyJoeStateEnum::Moving: return "Moving";
+	case SmileyJoeStateEnum::Hit: return "Hit";
+	case SmileyJoeStateEnum::Dying: return "Dying";
+	case SmileyJoeStateEnum::Dead: return "Dead";
+	case SmileyJoeStateEnum::None: return "None";
 	}
 	return "None"; // fallback
 }
@@ -92,5 +119,21 @@ constexpr StateEnum getStateEnum(StateVariant state_)
 	else return StateEnum::None;
 };
 
+
+constexpr SmileyJoeStateEnum getStateEnum(SmileyJoeAnimVar state_)
+{
+	if (std::holds_alternative<IdleState>(state_)) return SmileyJoeStateEnum::Idle;
+	else if (std::holds_alternative<HitState>(state_)) return SmileyJoeStateEnum::Hit;
+	else if (std::holds_alternative<DyingState>(state_)) return SmileyJoeStateEnum::Dying;
+	else if (std::holds_alternative<DeadState>(state_)) return SmileyJoeStateEnum::Dead;
+	else if (std::holds_alternative<MovingState>(state_)) return SmileyJoeStateEnum::Moving;
+	else return SmileyJoeStateEnum::None;
+};
+
+
+inline std::ostream& operator<<(std::ostream& os, SmileyJoeStateEnum s)
+{
+	return os << toString(s);
+}
 
 #endif

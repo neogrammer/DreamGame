@@ -4,19 +4,21 @@
 #include <string>
 #include <scenes/Scene.h>
 #include <resources/Cfg.h>
-#include <stages/IntroStage.h>
-#include <memory>
-#include <actors/Player.h>
 
+#include <memory>
+#include <utility>
+
+class Stage;
 class SceneMgr;
+class Player;
+class FSM_Player;
 
 class PlayScene : public Scene
 {
     std::shared_ptr<Stage> currStage;
     stg::Name stageName;
 public:
-
-    Player player;
+    std::shared_ptr<Player> player;
 
     PlayScene(SceneMgr* sceneMgr_);
 

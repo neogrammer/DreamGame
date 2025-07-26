@@ -13,7 +13,7 @@ namespace phys
 {
 
    bool AABB(const GameObject& a, const GameObject& b);
-  
+   bool AABB(const sf::FloatRect& a, const GameObject& b);
    float distSq(const GameObject* a, const GameObject* b);
   
    void detectAndSave_Collidable(GameObject& a, GameObject& b, std::vector<GameObject>& outHits);

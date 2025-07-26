@@ -20,6 +20,19 @@ namespace phys
             apos.y + asize.y > bpos.y);
     }
 
+    bool AABB(const sf::FloatRect& a, const GameObject& b)
+    {
+        const sf::Vector2f apos = a.position;
+        const sf::Vector2f asize = a.size;
+        const sf::Vector2f bpos = b.getPos();
+        const sf::Vector2f bsize = b.getSize();
+
+        return (apos.x < bpos.x + bsize.x &&
+            apos.x + asize.x > bpos.x &&
+            apos.y < bpos.y + bsize.y &&
+            apos.y + asize.y > bpos.y);
+    }
+
     float distSq(const GameObject* a, const GameObject* b)
     {
         sf::Vector2f d = a->getPos() - b->getPos();
@@ -103,7 +116,11 @@ namespace phys
                     o.move({ resolveX, resolveY });
 
                     if (resolveY < 0 && dynamic_cast<Player*>(&o))
+                    {
                         dynamic_cast<Player*>(&o)->land();
+                        dynamic_cast<Player*>(&o)->collisionOccurred = true;
+                        dynamic_cast<Player*>(&o)->collisionRect = fr.value();
+                    }
                 }
             }
         }

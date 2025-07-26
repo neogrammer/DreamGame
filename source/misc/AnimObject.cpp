@@ -1,7 +1,7 @@
-#include <misc/AnimObject.h>
+
 #include <iostream>
 #include <fstream>
-
+#include <actors/Player.h>
 #include <misc/Animator.h>
 
 void AnimObject::addFrame(const std::string& name_, const sf::Vector2f& offset_, const sf::IntRect& rect_, const sf::Vector2f& size_, const Cfg::Textures& tex_, bool leftFacing, bool repeating, float animDelay_)
@@ -352,6 +352,10 @@ void AnimObject::addFrames(const std::string& filename)
 			{
 				texs = Cfg::Textures::MegamanSheet130x160;
 			}
+			else if (texName == "SmileyJoe126x120")
+			{
+				texs = Cfg::Textures::SmileyJoe126x126;
+			}
 			else
 			{
 				std::cerr << "Unknown TexName in file: " << filename << std::endl;
@@ -451,7 +455,7 @@ AnimObject::AnimObject(const std::string& filename)
 
 void AnimObject::render(sf::RenderWindow& tv_)
 {
-	if (currAnim != getFSMState())
+	if (currAnim != getFSMState() && getFSMState() != "None")
 	{
 		const std::string& dir = uniDirectional ? "Uni" : (isFacingLeft() ? ((onlyRightTexture) ? "Right" : "Left") : "Right");
 
@@ -461,34 +465,39 @@ void AnimObject::render(sf::RenderWindow& tv_)
 
 		auto tmp2 = currAnim;
 		bool staySameIndex = false;
-		if (tmp != tmp2)
+		if (dynamic_cast<Player*>(this) != nullptr)
 		{
-			if (tmp == "Moving" || tmp == "MovingAndShooting")
+			
+
+			if (tmp != tmp2)
 			{
-				if (tmp2 == "Moving" || tmp2 == "MovingAndShooting")
+				if (tmp == "Moving" || tmp == "MovingAndShooting")
 				{
-					staySameIndex = true;
+					if (tmp2 == "Moving" || tmp2 == "MovingAndShooting")
+					{
+						staySameIndex = true;
+					}
 				}
-			}
-			else if (tmp == "Jumping" || tmp == "JumpingAndShooting")
-			{
-				if (tmp2 == "Jumping" || tmp2 == "JumpingAndShooting")
+				else if (tmp == "Jumping" || tmp == "JumpingAndShooting")
 				{
-					staySameIndex = true;
+					if (tmp2 == "Jumping" || tmp2 == "JumpingAndShooting")
+					{
+						staySameIndex = true;
+					}
 				}
-			}
-			else if (tmp == "Falling" || tmp == "FallingAndShooting")
-			{
-				if (tmp2 == "Falling" || tmp2 == "FallingAndShooting")
+				else if (tmp == "Falling" || tmp == "FallingAndShooting")
 				{
-					staySameIndex = true;
+					if (tmp2 == "Falling" || tmp2 == "FallingAndShooting")
+					{
+						staySameIndex = true;
+					}
 				}
-			}
-			else if (tmp == "Landing" || tmp == "LandingAndShooting")
-			{
-				if (tmp2 == "Landing" || tmp2 == "LandingAndShooting")
-				{ 
-					staySameIndex = true;
+				else if (tmp == "Landing" || tmp == "LandingAndShooting")
+				{
+					if (tmp2 == "Landing" || tmp2 == "LandingAndShooting")
+					{
+						staySameIndex = true;
+					}
 				}
 			}
 		}
@@ -552,7 +561,12 @@ void AnimObject::update(sf::RenderWindow& tv_, float dt_)
 	else
 	{
 		animElapsed += dt_;
-		if (frameIndex >= animDelays[currAnim].size()) frameIndex = animDelays[currAnim].size() - 1;
+		if (frameIndex >= animDelays[currAnim].size())
+		{
+
+			frameIndex = ((animDelays[currAnim].size() > 0) ? animDelays[currAnim].size() - 1 : 0);
+		}
+
 		if (animElapsed >= animDelays[currAnim][frameIndex]) {
 			animElapsed = 0.f;
 			animate();

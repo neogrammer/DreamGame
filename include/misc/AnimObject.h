@@ -10,6 +10,7 @@ class Animator;
 
 class AnimObject : public GameObject
 {
+public:
 	friend class Animator;
 	size_t frameIndex{};
 	std::string currAnim{};
@@ -39,6 +40,7 @@ class AnimObject : public GameObject
 protected:
 	bool readyToTransition{ false };
 
+public:
 
 	AnimObject();
 	virtual ~AnimObject() override = default;

@@ -1,10 +1,16 @@
 #include <stages/IntroStage.h>
 #include <resources/Cfg.h>
+#include <actors/ShootableObject.h>
+#include <FSM/SmileyJoeFSM.h>
+#include <actors/SmileyJoe.h>
+#include <misc/Animator.h>
 
 IntroStage::IntroStage()
 	: Stage{}
+    , smiles{ std::make_unique<SmileyJoe>("assets/anims/enemies/SmileyJoy.anm") }
 {
 
+    
 }
 
 IntroStage::~IntroStage() {}
@@ -20,6 +26,7 @@ void IntroStage::input()
 void IntroStage::update(float dt)
 {
     updateDynamicElements(dt);
+    smiles->update(*mWnd, dt);
 }
 
 
@@ -76,8 +83,11 @@ void IntroStage::update(float dt)
 
 void IntroStage::render(sf::RenderWindow& window)
 {
+    mWnd = &window;
 
     tmap.render(window);
+
+    smiles->render(window);
 
     sf::Text titleText2{ Cfg::fonts.get(Cfg::Fonts::SplashFont) };
     titleText2.setString("Intro Stage");
@@ -93,16 +103,38 @@ void IntroStage::onEnter()
 {
     // load all tiles and tilesets
     tmap.setup("Intro");
+
+    if (smiles != nullptr)
+    {
+        smiles.reset();
+        smiles = std::make_unique<SmileyJoe>();
+        smiles->setFacingLeft(true);
+
+    }
+    else
+    {
+        smiles = std::make_unique<SmileyJoe>();
+        smiles->setFacingLeft(true);
+    }
+
 }
 
 void IntroStage::onExit()
 {
     // clear out tiles and tilesets to make room for another stage but keeping this structure on file in the scene manager
     tmap.onExit();
+
+    if (smiles)
+    {
+        smiles.reset();
+        smiles = nullptr;
+    }
 }
 
 void IntroStage::updateDynamicElements(float dt)
 {
     // run any scripts on all the active objects in the stage
+
+    smiles->update(*mWnd, dt);
 
 }

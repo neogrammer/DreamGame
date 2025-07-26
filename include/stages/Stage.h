@@ -14,6 +14,7 @@ protected:
 	bool playerQuitting{ false };
 
 	Tilemap tmap;
+	sf::RenderWindow* mWnd;
 public:
 
 
@@ -26,6 +27,8 @@ public:
 
 	virtual void handleEvent(const sf::Event& event) {}
 	virtual void input() {}
+
+	void setWindow(sf::RenderWindow* wnd_);
 
 	virtual void update(float dt) {  }
 	virtual void render(sf::RenderWindow& window) {}

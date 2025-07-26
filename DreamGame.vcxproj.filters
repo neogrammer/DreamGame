@@ -76,6 +76,12 @@
     <Filter Include="Resource Files\tilesets">
       <UniqueIdentifier>{f699f1c8-3774-42e1-80d7-85e023d8fdda}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\textures\enemies">
+      <UniqueIdentifier>{da5a1eb9-2f68-4204-ab5d-04f14e24fe33}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\anims\enemies">
+      <UniqueIdentifier>{f582f15c-2df5-4898-b78a-4ffaf0ba895e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Font Include="assets\fonts\Crusty.ttf">
@@ -154,6 +160,9 @@
     </ClCompile>
     <ClCompile Include="source\misc\Phys.cpp">
       <Filter>Source Files\misc</Filter>
+    </ClCompile>
+    <ClCompile Include="source\actors\SmileyJoe.cpp">
+      <Filter>Source Files\actors</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -253,6 +262,15 @@
     <ClInclude Include="include\misc\Phys.h">
       <Filter>Header Files\misc</Filter>
     </ClInclude>
+    <ClInclude Include="include\actors\ShootableObject.h">
+      <Filter>Header Files\actors</Filter>
+    </ClInclude>
+    <ClInclude Include="include\actors\SmileyJoe.h">
+      <Filter>Header Files\actors</Filter>
+    </ClInclude>
+    <ClInclude Include="include\FSM\SmileyJoeFSM.h">
+      <Filter>Header Files\FSM\derived</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\textures\tilesets\Tiles.png">
@@ -267,6 +285,9 @@
     <Image Include="assets\textures\player\PlayerAtlas.png">
       <Filter>Resource Files\textures\player</Filter>
     </Image>
+    <Image Include="assets\textures\enemies\SmileyJoe1.png">
+      <Filter>Resource Files\textures\enemies</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\anims\player.anm">
@@ -277,6 +298,9 @@
     </None>
     <None Include="assets\tilesets\Intro.tst">
       <Filter>Resource Files\tilesets</Filter>
+    </None>
+    <None Include="assets\anims\enemies\SmileyJoe.anm">
+      <Filter>Resource Files\anims\enemies</Filter>
     </None>
   </ItemGroup>
 </Project>
