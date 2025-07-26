@@ -9,6 +9,12 @@ class FSM_SmileyJoe;
 class SmileyJoe : public AnimObject, public ShootableObject
 {
 	std::unique_ptr<FSM_SmileyJoe> fsm;
+
+	float targetX{ 900.f };
+	bool goingLeft{ true };
+	bool patrolling{ true };
+	int rotateDir{ 0 };
+
 public:
 
 	using AnimObject::AnimObject;
@@ -28,6 +34,9 @@ public:
 	void stopMoving();
 	void hit();
 	void recover();
+
+	void walkToNewTarget(float newTargetX);
+
 
 	bool isIdle();       
 	bool isMoving();     

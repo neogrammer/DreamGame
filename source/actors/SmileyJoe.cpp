@@ -44,6 +44,49 @@ void SmileyJoe::update(sf::RenderWindow& tv_, float dt_)
 	{
 		recover();
 	}
+	else
+	{
+		if (!hitFlashing)
+		{
+			if (patrolling)
+			{
+
+				if (fabsf(targetX - getPos().x) < 0.0001f)
+				{
+					rotateDir = 1 - rotateDir;
+
+					if (rotateDir == 0)
+					{
+						walkToNewTarget(getPos().x + 500.f);
+					}
+					else
+					{
+						walkToNewTarget(getPos().x - 500.f);
+					}
+				}
+
+				if (targetX - getPos().x < -0.0001f)
+				{
+					setFacingLeft(true);
+				}
+				else
+				{
+					if (targetX - getPos().x > 0.0001f)
+					{
+						setFacingLeft(false);
+					}
+				}
+
+				setVel({ getVel().x + (targetX - getPos().x) * dt_  , getVel().y });
+				
+			}
+			else
+			{
+				setVel({ 0.f,getVel().y });
+			}
+		}
+	}
+
 	
 	ShootableObject::update(dt_);
 	AnimObject::update(tv_, dt_);
@@ -77,6 +120,20 @@ void SmileyJoe::recover()
 	if (fsm == nullptr) return;
 
 	dispatch(*fsm, EventRecovered{});
+}
+
+void SmileyJoe::walkToNewTarget(float newTargetX)
+{
+
+	if (fsm == nullptr) return;
+	dispatch(*fsm, EventStartedMoving{});
+
+	if (newTargetX < getPos().x)
+		setFacingLeft(true);
+	else if (newTargetX > getPos().x)
+		setFacingLeft(false);
+	targetX = newTargetX;
+
 }
 
 bool SmileyJoe::isIdle()

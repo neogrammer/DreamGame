@@ -9,7 +9,7 @@ IntroStage::IntroStage()
 	: Stage{}
     , smiles{ std::make_unique<SmileyJoe>("assets/anims/enemies/SmileyJoy.anm") }
 {
-
+    
     
 }
 
@@ -117,6 +117,7 @@ void IntroStage::onEnter()
         smiles->setFacingLeft(true);
     }
 
+    smiles->getFSM().dispatch(EventStartedMoving{});
 }
 
 void IntroStage::onExit()

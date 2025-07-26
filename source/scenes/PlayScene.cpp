@@ -176,26 +176,26 @@ void PlayScene::render(sf::RenderWindow& window)
     phys::detectAndResolve_Tilemap_Collisions(*player, currStage->getTilemap().getSolidTiles());
     player->render(window);
 
-    // collision boxes
-    for (auto& t : currStage->getTilemap().getSolidTiles())
-    {
-        sf::RectangleShape collBox;
-        collBox.setSize(t.getSize());
-        collBox.setPosition(t.getPos());
-        collBox.setFillColor(sf::Color::Transparent);
-        collBox.setOutlineColor(sf::Color::Yellow);
-        collBox.setOutlineThickness(1);
-        
-        window.draw(collBox);
-    }
-    sf::RectangleShape collBox;
-    collBox.setSize(player->getSize());
-    collBox.setPosition(player->getPos());
-    collBox.setFillColor(sf::Color::Transparent);
-    collBox.setOutlineColor(sf::Color::Yellow);
-    collBox.setOutlineThickness(1);
+    //// collision boxes
+    //for (auto& t : currStage->getTilemap().getSolidTiles())
+    //{
+    //    sf::RectangleShape collBox;
+    //    collBox.setSize(t.getSize());
+    //    collBox.setPosition(t.getPos());
+    //    collBox.setFillColor(sf::Color::Transparent);
+    //    collBox.setOutlineColor(sf::Color::Yellow);
+    //    collBox.setOutlineThickness(1);
+    //    
+    //    window.draw(collBox);
+    //}
+    //sf::RectangleShape collBox;
+    //collBox.setSize(player->getSize());
+    //collBox.setPosition(player->getPos());
+    //collBox.setFillColor(sf::Color::Transparent);
+    //collBox.setOutlineColor(sf::Color::Yellow);
+    //collBox.setOutlineThickness(1);
 
-    window.draw(collBox);
+    //window.draw(collBox);
 
     sf::Text titleText{ Cfg::fonts.get(Cfg::Fonts::SplashFont) };
     titleText.setString("Play Scene");

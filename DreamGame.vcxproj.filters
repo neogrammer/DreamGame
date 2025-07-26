@@ -288,6 +288,9 @@
     <Image Include="assets\textures\enemies\SmileyJoe1.png">
       <Filter>Resource Files\textures\enemies</Filter>
     </Image>
+    <Image Include="assets\textures\tilesets\Tileset64x64.png">
+      <Filter>Resource Files\textures\tilesets</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\anims\player.anm">
@@ -301,6 +304,9 @@
     </None>
     <None Include="assets\anims\enemies\SmileyJoe.anm">
       <Filter>Resource Files\anims\enemies</Filter>
+    </None>
+    <None Include="assets\tilesets\Intro64.tst">
+      <Filter>Resource Files\tilesets</Filter>
     </None>
   </ItemGroup>
 </Project>
