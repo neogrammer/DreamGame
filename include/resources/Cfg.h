@@ -26,7 +26,7 @@ public:
 	static void Uninitialize();
 	// Resource Enums 
 	enum class Textures {
-		Tileset1, PlayerSheet64x96, PlayerSheet132x170, MegamanSheet130x160, SmileyJoe126x126, UNKNOWN };
+		Tileset1, PlayerSheet64x96, PlayerSheet132x170, MegamanSheet130x160, SmileyJoe126x126, TilesetBasicGreeen10x40_64x64, UNKNOWN };
 	enum class Fonts  { SplashFont, None };
 	enum class Music { None };
     enum class Sounds { None };

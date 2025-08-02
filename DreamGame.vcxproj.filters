@@ -291,6 +291,9 @@
     <Image Include="assets\textures\tilesets\Tileset64x64.png">
       <Filter>Resource Files\textures\tilesets</Filter>
     </Image>
+    <Image Include="assets\textures\tilesets\BasicGreen.png">
+      <Filter>Resource Files\textures\tilesets</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\anims\player.anm">
@@ -306,6 +309,9 @@
       <Filter>Resource Files\anims\enemies</Filter>
     </None>
     <None Include="assets\tilesets\Intro64.tst">
+      <Filter>Resource Files\tilesets</Filter>
+    </None>
+    <None Include="assets\tilesets\BasicGreene.tst">
       <Filter>Resource Files\tilesets</Filter>
     </None>
   </ItemGroup>

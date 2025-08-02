@@ -90,6 +90,7 @@
     <Image Include="assets\textures\player\PlayerAtlas.png" />
     <Image Include="assets\textures\player\Vegeta.png" />
     <Image Include="assets\textures\player\vegeta_sheet.png" />
+    <Image Include="assets\textures\tilesets\BasicGreen.png" />
     <Image Include="assets\textures\tilesets\Tiles.png" />
     <Image Include="assets\textures\tilesets\Tileset64x64.png" />
   </ItemGroup>
@@ -97,6 +98,7 @@
     <None Include="assets\anims\enemies\SmileyJoe.anm" />
     <None Include="assets\anims\megaman.anm" />
     <None Include="assets\anims\player.anm" />
+    <None Include="assets\tilesets\BasicGreene.tst" />
     <None Include="assets\tilesets\Intro.tst" />
     <None Include="assets\tilesets\Intro64.tst" />
   </ItemGroup>

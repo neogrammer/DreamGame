@@ -54,10 +54,10 @@ private:
         switch (texID_)
         {
         case Cfg::Textures::Tileset1:
-            filename = "Intro64.tst";
+            filename = "BasicGreene.tst";
             break;
         default:
-            filename = "Intro64.tst";
+            filename = "BasicGreene.tst";
             break;
         }
 
