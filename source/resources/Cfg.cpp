@@ -27,10 +27,19 @@ void Cfg::Uninitialize()
 
 void Cfg::initMusic()
 {
+	music.load(Music::Intro, "assets/sfx/intro.wav");
 }
 
 void Cfg::initSounds()
 {
+	sounds.load(Sounds::MM_BigDmg, "assets/sfx/bigdmg.wav");
+	sounds.load(Sounds::MM_SmDmg, "assets/sfx/smalldmg.wav");
+	sounds.load(Sounds::MM_Hurt, "assets/sfx/bigdmg.wav");
+	sounds.load(Sounds::MM_, "assets/sfx/bigdmg.wav");
+	sounds.load(Sounds::MM_BigDmg, "assets/sfx/bigdmg.wav");
+	sounds.load(Sounds::MM_BigDmg, "assets/sfx/bigdmg.wav");
+	sounds.load(Sounds::MM_BigDmg, "assets/sfx/bigdmg.wav");
+
 }
 
 void Cfg::initTextures()

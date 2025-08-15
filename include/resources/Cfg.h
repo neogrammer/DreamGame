@@ -28,8 +28,8 @@ public:
 	enum class Textures {
 		Tileset1, PlayerSheet64x96, PlayerSheet132x170, MegamanSheet130x160, SmileyJoe126x126, TilesetBasicGreeen10x40_64x64,BusterBullet28x18, UNKNOWN };
 	enum class Fonts  { SplashFont, None };
-	enum class Music { None };
-    enum class Sounds { None };
+	enum class Music { Intro, None };
+    enum class Sounds { MM_Hurt, MM_SmDmg, MM_BigDmg, MM_Shot1, MM_Jump, MM_Land, MM_Die, None };
 
 
 	// resource buckets for each type of resource

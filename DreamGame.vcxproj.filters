@@ -106,6 +106,9 @@
     <Filter Include="Resource Files\anims\anchors">
       <UniqueIdentifier>{de5eb291-6120-4ce6-b68d-f7906a57cabf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\sfx">
+      <UniqueIdentifier>{978ca508-9c81-4b8e-927f-a648ebffe786}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Font Include="assets\fonts\Crusty.ttf">
@@ -374,5 +377,31 @@
     <None Include="assets\anims\anchors\player.anc">
       <Filter>Resource Files\anims\anchors</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="assets\sfx\bigdmg.wav">
+      <Filter>Resource Files\sfx</Filter>
+    </Media>
+    <Media Include="assets\sfx\die.wav">
+      <Filter>Resource Files\sfx</Filter>
+    </Media>
+    <Media Include="assets\sfx\hurt.wav">
+      <Filter>Resource Files\sfx</Filter>
+    </Media>
+    <Media Include="assets\sfx\intro.wav">
+      <Filter>Resource Files\sfx</Filter>
+    </Media>
+    <Media Include="assets\sfx\jump.wav">
+      <Filter>Resource Files\sfx</Filter>
+    </Media>
+    <Media Include="assets\sfx\land.wav">
+      <Filter>Resource Files\sfx</Filter>
+    </Media>
+    <Media Include="assets\sfx\shot1.wav">
+      <Filter>Resource Files\sfx</Filter>
+    </Media>
+    <Media Include="assets\sfx\smalldmg.wav">
+      <Filter>Resource Files\sfx</Filter>
+    </Media>
   </ItemGroup>
 </Project>

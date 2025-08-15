@@ -114,6 +114,16 @@
     <None Include="assets\tilesets\Intro.tst" />
     <None Include="assets\tilesets\Intro64.tst" />
   </ItemGroup>
+  <ItemGroup>
+    <Media Include="assets\sfx\bigdmg.wav" />
+    <Media Include="assets\sfx\die.wav" />
+    <Media Include="assets\sfx\hurt.wav" />
+    <Media Include="assets\sfx\intro.wav" />
+    <Media Include="assets\sfx\jump.wav" />
+    <Media Include="assets\sfx\land.wav" />
+    <Media Include="assets\sfx\shot1.wav" />
+    <Media Include="assets\sfx\smalldmg.wav" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
