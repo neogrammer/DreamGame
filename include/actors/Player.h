@@ -2,19 +2,25 @@
 #define PLAYER_H__
 #include <misc/AnimObject.h>
 #include <memory>
-
+#include "../weapons/projectiles/horizontal/BusterBullet.h"
+#include <misc/ShooterObject.h>
 class FSM_Player;
 
-class Player : public AnimObject
+class Player : public AnimObject, public ShooterObject
 {
 	std::unique_ptr<FSM_Player> fsm;
-	float shootDelay{ 0.2f };
+	float shootDelay{ 0.15f };
 	float shootElapsed{ 0.f };
 	float shootOnCooldown{ false };
 public:
 	bool canSetInitialState{ true };
 	bool collisionOccurred{ false };
 	sf::FloatRect collisionRect{};
+	float shootPressedElapsed{};
+	float shootPressedDelay{ 0.25f };
+	bool shootPressed{ false };
+
+	std::vector<BusterBullet> bullets;
 
 	Player();
 	~Player() final override = default;
@@ -32,6 +38,7 @@ public:
 	void stopMoving();
 	void shoot1();
 	void stopShooting();
+	void shoot();
 	void fall();
 	void land();
 	void hit();
@@ -60,6 +67,8 @@ public:
 	std::string getFSMState() override final;
 
 	FSM_Player& getFSM();
+
+	void createBullet();
 
 
 };

@@ -82,6 +82,30 @@
     <Filter Include="Resource Files\anims\enemies">
       <UniqueIdentifier>{f582f15c-2df5-4898-b78a-4ffaf0ba895e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\weapons">
+      <UniqueIdentifier>{b3f7b2f9-a016-4df3-935b-b7068bbca0a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\weapons\projectiles">
+      <UniqueIdentifier>{e15b101b-3299-46fd-8d2d-448f30e2c641}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\weapons\projectiles\horizontal">
+      <UniqueIdentifier>{242a16ba-b936-4d35-b2bd-26d8a9af23d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\weapons">
+      <UniqueIdentifier>{448cd1e6-e6d6-4a7c-9bcd-b36914e9e9e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\weapons\projectiles">
+      <UniqueIdentifier>{4fe74233-0258-4a65-8dea-04135790fc90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\textures\projectiles">
+      <UniqueIdentifier>{d17493e7-84a7-48ff-8881-c08b68821643}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\anims\bullets">
+      <UniqueIdentifier>{1bdd4b65-2eb1-4b45-a6f1-94d9fb3647fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\anims\anchors">
+      <UniqueIdentifier>{de5eb291-6120-4ce6-b68d-f7906a57cabf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Font Include="assets\fonts\Crusty.ttf">
@@ -163,6 +187,15 @@
     </ClCompile>
     <ClCompile Include="source\actors\SmileyJoe.cpp">
       <Filter>Source Files\actors</Filter>
+    </ClCompile>
+    <ClCompile Include="source\misc\ShooterObject.cpp">
+      <Filter>Source Files\misc</Filter>
+    </ClCompile>
+    <ClCompile Include="source\weapons\projectiles\Projectile.cpp">
+      <Filter>Source Files\weapons\projectiles</Filter>
+    </ClCompile>
+    <ClCompile Include="include\weapons\projectiles\horizontal\BusterBullet.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -271,6 +304,24 @@
     <ClInclude Include="include\FSM\SmileyJoeFSM.h">
       <Filter>Header Files\FSM\derived</Filter>
     </ClInclude>
+    <ClInclude Include="include\weapons\Weapon.h">
+      <Filter>Header Files\weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="include\weapons\projectiles\Projectile.h">
+      <Filter>Header Files\weapons\projectiles</Filter>
+    </ClInclude>
+    <ClInclude Include="include\weapons\projectiles\horizontal\HorizontalWeapon.h">
+      <Filter>Header Files\weapons\projectiles\horizontal</Filter>
+    </ClInclude>
+    <ClInclude Include="include\weapons\projectiles\horizontal\BusterBullet.h">
+      <Filter>Header Files\weapons\projectiles\horizontal</Filter>
+    </ClInclude>
+    <ClInclude Include="include\misc\ShooterObject.h">
+      <Filter>Header Files\misc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\FSM\BusterBulletFSM.h">
+      <Filter>Header Files\FSM\derived</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\textures\tilesets\Tiles.png">
@@ -294,6 +345,9 @@
     <Image Include="assets\textures\tilesets\BasicGreen.png">
       <Filter>Resource Files\textures\tilesets</Filter>
     </Image>
+    <Image Include="assets\textures\projectiles\busterBullet.png">
+      <Filter>Resource Files\textures\projectiles</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\anims\player.anm">
@@ -313,6 +367,12 @@
     </None>
     <None Include="assets\tilesets\BasicGreene.tst">
       <Filter>Resource Files\tilesets</Filter>
+    </None>
+    <None Include="assets\anims\bullets\BusterBullet.anm">
+      <Filter>Resource Files\anims\bullets</Filter>
+    </None>
+    <None Include="assets\anims\anchors\player.anc">
+      <Filter>Resource Files\anims\anchors</Filter>
     </None>
   </ItemGroup>
 </Project>

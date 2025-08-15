@@ -20,6 +20,11 @@ void GameObject::setPosition(sf::Vector2f position)
 	sf::Sprite::setPosition(position);
 }
 
+void GameObject::setCol(sf::Color col_)
+{
+	hitColor = col_;
+}
+
 void GameObject::copyOver(const GameObject& o)
 {
 	mTexID = o.mTexID;
@@ -103,6 +108,7 @@ void GameObject::render(sf::RenderWindow& tv_)
 		{
 			setPosition(mPos - mOff);
 			setTextureRect(mRect);
+			setCol(hitColor);
 			setTexture(Cfg::textures.get(mTexID));
 
 			tv_.draw(*this);

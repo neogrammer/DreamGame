@@ -20,6 +20,7 @@ public:
 	float animElapsed{ 0.f };
 
 
+
 	bool transitioning{ false };
 	float transitionDelay{ 0.1f };
 	float transitionElapsed{ 0.f };

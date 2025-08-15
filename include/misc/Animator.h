@@ -17,6 +17,8 @@ public:
 	void setRect(const std::string& anim, const std::string& dir, int idx);
 	bool changeAnim(const std::string& name);
 	void update(float dt_);
+
+	
 	
 };
 

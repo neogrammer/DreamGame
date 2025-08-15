@@ -27,13 +27,13 @@ public:
 		}
 	}
 
-	const StateVariant& getStateVariant() const {
+	StateVariant& getStateVariant() {
 		return state_;
 	}
 
-	constexpr std::string_view getStateName() const
+	std::string_view getStateName() const
 	{
-		return toString(getStateEnum<StateVariant>(state_));
+		return toString(getStateEnum(state_));
 	}
 
 	void setInitialState(StateVariant&& newstate)

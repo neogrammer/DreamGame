@@ -1,0 +1,25 @@
+12
+ StartedMovingAndShooting Right 2
+ 85 58 85 58
+ StartedMovingAndShooting Left 2
+ 20 58 20 58
+ MovingAndShooting Right 10
+ 99 52 99 56 100 56 100 54 100 50 100 52 99 52 100 54 100 52 99 50
+ MovingAndShooting Left 10
+ 2 52 2 56 1 56 1 54 1 50 1 52 2 52 1 54 1 52 2 50
+ Shooting Right 1
+ 85 58
+ Shooting Left 1
+ 20 58
+ JumpingAndShooting Right 4
+ 85 53 85 53 85 53 85 53
+ JumpingAndShooting Left 4
+ 20 53 20 53 20 53 20 53
+ FallingAndShooting Right 4
+ 80 58 80 58 80 58 80 58
+ FallingAndShooting Left 4
+ 20 58 20 58 20 58 20 58
+ LandingAndShooting Right 3
+ 85 58 85 58 85 58
+ LandingAndShooting Left 3
+ 20 58 20 58 20 58

@@ -5,7 +5,7 @@
 #include <stages/IntroStage.h>
 #include <actors/player.h>
 #include <FSM/PlayerAnimFSM.h>
-
+#include <actors/SmileyJoe.h>
 
 
 using namespace stg;
@@ -94,6 +94,35 @@ void PlayScene::update(sf::RenderWindow& window, float dt)
 
     }
     // do all collision detection
+
+    for (auto& b : player->bullets)
+    {
+
+        sf::FloatRect bbox={{b.getPos()},{b.getSize()}};
+        auto& smiley = dynamic_cast<IntroStage*>(currStage.get())->smiles;
+        bool found = false;
+        if (bbox.findIntersection({smiley->getPos(), smiley->getSize()}))
+        {
+            found = true;
+        }
+        if (found)
+        {
+            smiley->takeHit();
+            b.destroy();
+        }
+    }
+    for (int i = 0; i < player->bullets.size(); ++i)
+    {
+        if (player->bullets[i].getPos().x >= window.getView().getCenter().x - (window.getSize().x / 2.f) - player->bullets[i].getSize().x && player->bullets[i].getPos().x < window.getView().getCenter().x + (window.getSize().x / 2.f) &&
+            player->bullets[i].getPos().y >= window.getView().getCenter().y - (window.getSize().y / 2.f) - player->bullets[i].getSize().y && player->bullets[i].getPos().y < window.getView().getCenter().y + (window.getSize().y / 2.f))
+        {
+            // do nothing
+        }
+        else
+        {
+            player->bullets[i].destroy();
+        }
+    }
 }
 
 
@@ -175,6 +204,13 @@ void PlayScene::render(sf::RenderWindow& window)
     }
     phys::detectAndResolve_Tilemap_Collisions(*player, currStage->getTilemap().getSolidTiles());
     player->render(window);
+
+
+
+    for (auto& b : player->bullets)
+    {
+        b.render(window);
+    }
 
     //// collision boxes
     //for (auto& t : currStage->getTilemap().getSolidTiles())

@@ -4,7 +4,7 @@
 
 
 SmileyJoe::SmileyJoe()
-	: AnimObject{ Cfg::Textures::SmileyJoe126x126, {}, {}, {}, {}, {{0,0},{126,120}} }, fsm{ std::make_unique<FSM_SmileyJoe>() }
+	: AnimObject{ Cfg::Textures::SmileyJoe126x126, {}, {}, {}, {126.f,120.f}, {{0,0},{126,120}}}, fsm{std::make_unique<FSM_SmileyJoe>()}
 {
 
 	addFrames("assets/anims/enemies/SmileyJoe.anm");
@@ -26,20 +26,62 @@ void SmileyJoe::input()
 void SmileyJoe::render(sf::RenderWindow& tv_)
 {
 
+	
 	AnimObject::render(tv_);
-	if (hitFlashing)
+	
+
+	
+	if (isHit)
 	{
 		sf::Sprite spr{ Cfg::textures.get(Cfg::Textures::SmileyJoe126x126) };
-		spr.setColor(sf::Color(getFlashCol().r, getFlashCol().g, getFlashCol().b, 255));
+		
+		if (hitElapsed >= 5 * (hitDelay / 5))
+		{
+			spr.setColor(sf::Color(0, 50, 50, 255));
+		}
+		else if (hitElapsed >= 4 * (hitDelay / 5))
+		{
+			spr.setColor(sf::Color(255, 255, 255, 255));
+		}
+		else if (hitElapsed >= 3 * (hitDelay / 5))
+		{
+			spr.setColor(sf::Color(0, 50, 50, 255));
+		}
+		else if (hitElapsed >= 2 * (hitDelay / 5))
+		{
+			spr.setColor(sf::Color(255, 255, 255, 255));
+		}
+		else if (hitElapsed >= 1 * hitDelay / 5)
+		{
+			spr.setColor(sf::Color(0, 50, 50, 255));
+		}
+		else
+		{
+			spr.setColor(sf::Color(255, 255, 255, 255));
+		}
 		spr.setPosition(getPos() - getOff());
 		spr.setTextureRect(getRect());
 
 		tv_.draw(spr);
 	}
+	
+
+
 }
 void SmileyJoe::update(sf::RenderWindow& tv_, float dt_)
 {
-	
+	if (isHit)
+	{
+		hitElapsed += dt_;
+		if (hitElapsed > hitDelay)
+		{
+			isHit = false;
+			hitElapsed = 0.f;
+		}
+		
+	}
+
+
 	if (isRecovering())
 	{
 		recover();
@@ -118,7 +160,8 @@ void SmileyJoe::hit()
 void SmileyJoe::recover()
 {
 	if (fsm == nullptr) return;
-
+	setCol(sf::Color::White);
+	isHit = false;
 	dispatch(*fsm, EventRecovered{});
 }
 
@@ -189,6 +232,9 @@ std::string SmileyJoe::getFSMState()
 
 void SmileyJoe::takeHit()
 {
+
+	setCol(sf::Color::Blue);
+	isHit = true;
 }
 
 FSM_SmileyJoe& SmileyJoe::getFSM()

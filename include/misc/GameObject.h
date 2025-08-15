@@ -35,6 +35,7 @@ protected:
 	void updatePrevPos();
 	void updatePrevVel();
 public:
+	sf::Color hitColor{ sf::Color::White };
 
 	GameObject(Cfg::Textures texID_ = Cfg::Textures::UNKNOWN, sf::Vector2f pos_ = { 0.f,0.f }, sf::Vector2f vel_ = { 0.f,0.f }, sf::Vector2f off_ = { 0.f,0.f }, sf::Vector2f size_ = { 0.f,0.f }, sf::IntRect rect_ = { {0,0},{0,0} });
 	
@@ -73,6 +74,7 @@ public:
 	virtual void render(sf::RenderWindow& tv_);
 	virtual void update(sf::RenderWindow& tv_, float dt_);
 
+	void setCol(sf::Color col_);
 	
 
 };

@@ -22,6 +22,7 @@
     <Font Include="assets\fonts\Crusty.ttf" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="include\weapons\projectiles\horizontal\BusterBullet.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="source\actors\Player.cpp" />
     <ClCompile Include="source\actors\SmileyJoe.cpp" />
@@ -33,6 +34,7 @@
     <ClCompile Include="source\misc\GameObject.cpp" />
     <ClCompile Include="source\misc\globals.cpp" />
     <ClCompile Include="source\misc\Phys.cpp" />
+    <ClCompile Include="source\misc\ShooterObject.cpp" />
     <ClCompile Include="source\resources\Cfg.cpp" />
     <ClCompile Include="source\scenes\MenuScene.cpp" />
     <ClCompile Include="source\scenes\OverScene.cpp" />
@@ -47,11 +49,13 @@
     <ClCompile Include="source\tilemap\Tile.cpp" />
     <ClCompile Include="source\tilemap\Tilemap.cpp" />
     <ClCompile Include="source\tilemap\Tileset.cpp" />
+    <ClCompile Include="source\weapons\projectiles\Projectile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\actors\Player.h" />
     <ClInclude Include="include\actors\ShootableObject.h" />
     <ClInclude Include="include\actors\SmileyJoe.h" />
+    <ClInclude Include="include\FSM\BusterBulletFSM.h" />
     <ClInclude Include="include\FSM\DuckFold.h" />
     <ClInclude Include="include\FSM\Events.h" />
     <ClInclude Include="include\FSM\FSM.h" />
@@ -67,6 +71,7 @@
     <ClInclude Include="include\misc\GameObject.h" />
     <ClInclude Include="include\misc\globals.h" />
     <ClInclude Include="include\misc\Phys.h" />
+    <ClInclude Include="include\misc\ShooterObject.h" />
     <ClInclude Include="include\resources\Cfg.h" />
     <ClInclude Include="include\resources\ResourceMgr.h" />
     <ClInclude Include="include\scenes\MenuScene.h" />
@@ -84,17 +89,24 @@
     <ClInclude Include="include\tilemap\Tile.h" />
     <ClInclude Include="include\tilemap\Tilemap.h" />
     <ClInclude Include="include\tilemap\Tileset.h" />
+    <ClInclude Include="include\weapons\projectiles\horizontal\BusterBullet.h" />
+    <ClInclude Include="include\weapons\projectiles\horizontal\HorizontalWeapon.h" />
+    <ClInclude Include="include\weapons\projectiles\Projectile.h" />
+    <ClInclude Include="include\weapons\Weapon.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\textures\enemies\SmileyJoe1.png" />
     <Image Include="assets\textures\player\PlayerAtlas.png" />
     <Image Include="assets\textures\player\Vegeta.png" />
     <Image Include="assets\textures\player\vegeta_sheet.png" />
+    <Image Include="assets\textures\projectiles\busterBullet.png" />
     <Image Include="assets\textures\tilesets\BasicGreen.png" />
     <Image Include="assets\textures\tilesets\Tiles.png" />
     <Image Include="assets\textures\tilesets\Tileset64x64.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="assets\anims\anchors\player.anc" />
+    <None Include="assets\anims\bullets\BusterBullet.anm" />
     <None Include="assets\anims\enemies\SmileyJoe.anm" />
     <None Include="assets\anims\megaman.anm" />
     <None Include="assets\anims\player.anm" />

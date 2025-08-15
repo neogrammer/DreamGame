@@ -356,6 +356,10 @@ void AnimObject::addFrames(const std::string& filename)
 			{
 				texs = Cfg::Textures::SmileyJoe126x126;
 			}
+			else if (texName == "BusterBullet28x18")
+			{
+				texs = Cfg::Textures::BusterBullet28x18;
+			}
 			else
 			{
 				std::cerr << "Unknown TexName in file: " << filename << std::endl;
@@ -392,9 +396,36 @@ void AnimObject::addFrames(const std::string& filename)
 						tmp.position.x = (int)(x * recSize.x);
 						tmp.position.y = (int)(startRow * recSize.y) + (int)(y * recSize.y);
 					}
+
+
 					tmp.size.x = (int)recSize.x;
 					tmp.size.y = (int)recSize.y;
-					recs.emplace_back(tmp);
+					
+					if (onlyRightTexture && dir == 0)
+					{
+						sf::IntRect reverseRect{ {0,0},{0,0} };
+
+						if (firstRow)
+						{
+							reverseRect.position.x = (int)(startCol * recSize.x) + (int)(x * recSize.x) + (int)recSize.x;
+							reverseRect.position.y = (int)(startRow * recSize.y) + (int)(y * recSize.y);
+		
+						}
+						else
+						{
+							reverseRect.position.x = (int)(x * recSize.x) + (int)recSize.x;
+							reverseRect.position.y = (int)(startRow * recSize.y) + (int)(y * recSize.y);
+						}
+
+						reverseRect.size.x = (-1 * tmp.size.x);
+						reverseRect.size.y = (int)recSize.y;
+
+						recs.emplace_back(reverseRect);
+					}
+					else
+					{
+						recs.emplace_back(tmp);
+					}
 				}
 			}
 
@@ -563,11 +594,11 @@ void AnimObject::update(sf::RenderWindow& tv_, float dt_)
 		animElapsed += dt_;
 		if (frameIndex >= animDelays[currAnim].size())
 		{
-
 			frameIndex = ((animDelays[currAnim].size() > 0) ? animDelays[currAnim].size() - 1 : 0);
 		}
 
-		if (animElapsed >= animDelays[currAnim][frameIndex]) {
+		if (animElapsed >= animDelays[currAnim][frameIndex])
+		{
 			animElapsed = 0.f;
 			animate();
 		}

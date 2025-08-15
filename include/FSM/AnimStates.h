@@ -25,7 +25,8 @@ struct HitState {};
 
 using PlayerAnimVar = std::variant<IdleState, StartedMovingState, DeadState, MovingState, StartedMovingAndShootingState, ShootingState, MovingAndShootingState, JumpingState, FallingState, LandingState, JumpingAndShootingState, FallingAndShootingState, LandingAndShootingState, DyingState, HitState>;
 using SmileyJoeAnimVar = std::variant<IdleState, MovingState, DyingState, HitState, DeadState>;
-	
+using BusterBulletAnimVar = std::variant<IdleState>;
+
 	enum class StateEnum {
 	Idle,
 	StartedMoving,
@@ -53,6 +54,13 @@ using SmileyJoeAnimVar = std::variant<IdleState, MovingState, DyingState, HitSta
 		Hit,
 		Dying,
 		Dead,
+		Count,
+		None
+	};
+
+	enum class BusterBulletStateEnum
+	{
+		Idle,
 		Count,
 		None
 	};
@@ -98,8 +106,20 @@ static const std::string_view toString(SmileyJoeStateEnum s)
 
 
 
-template <typename StateVariant>
-constexpr StateEnum getStateEnum(StateVariant state_)
+static const std::string_view toString(BusterBulletStateEnum s)
+{
+	switch (s)
+	{
+	case BusterBulletStateEnum::Idle: return "Idle";
+	case BusterBulletStateEnum::None: return "None";
+	}
+	return "None"; // fallback
+}
+
+
+
+//template <typename StateVariant>
+constexpr StateEnum getStateEnum(PlayerAnimVar state_)
 {
 	if (std::holds_alternative<IdleState>(state_)) return StateEnum::Idle;
 	else if (std::holds_alternative<HitState>(state_)) return StateEnum::Hit;
@@ -135,5 +155,20 @@ inline std::ostream& operator<<(std::ostream& os, SmileyJoeStateEnum s)
 {
 	return os << toString(s);
 }
+
+
+
+constexpr BusterBulletStateEnum getStateEnum(BusterBulletAnimVar state_)
+{
+	if (std::holds_alternative<IdleState>(state_)) return BusterBulletStateEnum::Idle;
+	else return BusterBulletStateEnum::None;
+};
+
+
+inline std::ostream& operator<<(std::ostream& os, BusterBulletStateEnum s)
+{
+	return os << toString(s);
+}
+
 
 #endif

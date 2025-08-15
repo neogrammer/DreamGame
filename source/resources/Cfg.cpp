@@ -43,6 +43,7 @@ void Cfg::initTextures()
 	textures.load(Textures::PlayerSheet132x170, "assets/textures/player/vegeta_sheet.png");
 	textures.load(Textures::MegamanSheet130x160, "assets/textures/player/PlayerAtlas.png");
 	textures.load(Textures::SmileyJoe126x126, "assets/textures/enemies/SmileyJoe1.png");
+	textures.load(Textures::BusterBullet28x18, "assets/textures/projectiles/busterBullet.png");
 }
 
 void Cfg::initStages()
@@ -58,5 +59,5 @@ void Cfg::destroyTextures()
 
 void Cfg::initFonts()
 {
-	fonts.load(Cfg::Fonts::SplashFont, "assets/fonts/Crusty.ttf");
+	fonts.load(Cfg::Fonts::SplashFont, "assets/fonts/font1.ttf");
 }

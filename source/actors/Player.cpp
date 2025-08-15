@@ -3,14 +3,17 @@
 #include <FSM/PlayerAnimFSM.h>
 #include <optional>
 #include <variant>
-
+#include <stack>
 
 Player::Player()
 	: AnimObject{ Cfg::Textures::MegamanSheet130x160, {}, {}, {43.f, 65.f}, {52.f,63.f}, {{0,0},{130,160}} }
+	, ShooterObject{ *this, "assets/anims/anchors/player.anc" }
 	, fsm{ std::make_unique<FSM_Player>() }
 {
 
 	addFrames("assets/anims/megaman.anm");
+	
+
 
 	setPos({ getPos().x, 300.f });
 
@@ -18,6 +21,7 @@ Player::Player()
 	setFrameIndex(0);
 	dispatch(*fsm, EventFell{});
 }
+
 
 
 
@@ -68,14 +72,14 @@ void Player::input()
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Enter))
-		shoot1();
+		shoot();
 	else
 		if (isShooting() || isFallingAndShooting() || isJumpingAndShooting() || isLandingAndShooting() || isMovingAndShooting())
 			stopShooting();
 }
 void Player::render(sf::RenderWindow& tv_)
 {
-
+	
 	AnimObject::render(tv_);
 
 	if (collisionOccurred)
@@ -92,6 +96,32 @@ void Player::render(sf::RenderWindow& tv_)
 void Player::update(sf::RenderWindow& tv_, float dt_)
 {
 
+	std::stack<int> tmp;
+	for (int i = 0; i < bullets.size(); ++i)
+	{
+		if (bullets[i].isMarked())
+		{
+			tmp.push(i);
+		}
+	}
+
+	while (!tmp.empty())
+	{
+		bullets.erase(bullets.begin() + tmp.top());
+		tmp.pop();
+	}
+
+
+	if (shootPressed)
+	{
+		shootPressedElapsed += dt_;
+		if (shootPressedElapsed > shootPressedDelay)
+		{
+			shootPressedElapsed = 0.f;
+			shootPressed = false;
+		}
+	}
+
 	if (isJumping() || isJumpingAndShooting())
 	{
 		setVel({ getVel().x, getVel().y + 2400.f * dt_ });
@@ -103,7 +133,10 @@ void Player::update(sf::RenderWindow& tv_, float dt_)
 		setVel({ getVel().x, getVel().y + 2400.f * dt_ });
 	}
 
-
+	for (auto& b : bullets)
+	{
+		b.update(tv_, dt_);
+	}
 
 
 	if (shootOnCooldown)
@@ -158,6 +191,8 @@ void Player::stopMoving()
 	setVel({0.f, getVel().y});
 	dispatch(*fsm, EventStoppedMoving{});
 }
+
+
 void Player::shoot1()
 {
 
@@ -174,9 +209,28 @@ void Player::stopShooting()
 {
 
 	if (fsm == nullptr) return;
-
-	if (!shootOnCooldown)
+	if (!shootOnCooldown && !shootPressed)
+	{
 		dispatch(*fsm, EventStoppedShooting{});
+	}
+}
+void Player::shoot()
+{
+	if (fsm == nullptr) return;
+	if (canShoot())
+	{
+		shootOnCooldown = true;
+		createBullet();
+		/*bullets.push_back(BusterBullet{});
+		shootOnCooldown = true;*/
+		dispatch(*fsm, EventStartedShooting{});
+		shootElapsed = 0.0f;
+
+	}
+	shootPressedElapsed = 0.f;
+	shootPressed = true;
+	//std::cout << "Shoot Fireball" << std::endl;
+	
 }
 void Player::fall()
 {
@@ -236,3 +290,63 @@ FSM_Player& Player::getFSM()
 	return *fsm;
 }
 
+void Player::createBullet()
+{
+	std::string animName;
+
+	if (currAnim == "Hit" || currAnim == "Dead" || currAnim == "Dying")
+		return;
+
+	int frameInd = 0;
+
+	if (isFacingLeft())
+	{
+		if (currAnim == "Idle")
+			animName = "Shooting";
+		else if (currAnim == "StartedMoving")
+			animName = "StartedMovingAndShooting";
+		else if (currAnim == "Moving" && frameIndex < 2)
+			animName = "StartedMovingAndShooting";
+		else if (currAnim == "Moving" && frameIndex >= 2)
+			animName = "MovingAndShooting";
+		else if (currAnim == "Jumping")
+			animName = "JumpingAndShooting";
+		else if (currAnim == "Falling")
+			animName = "FallingAndShooting";
+		else if (currAnim == "Landing")
+			animName = "LandingAndShooting";
+		else
+		{
+			animName = currAnim;
+			frameInd = (int)frameIndex;
+		}
+
+
+		bullets.push_back(BusterBullet{ this, Cfg::Textures::BusterBullet28x18, {getPos().x - getOff().x + frameAnchors[animName]["Left"][frameInd].x, getPos().y - getOff().y + frameAnchors[animName]["Left"][frameInd].y}, {-700.f,0.f}, {0.f,0.f}, {28.f,18.f},{{0,0},{28,18}}});
+	}
+	else
+	{
+		if (currAnim == "Idle")
+			animName = "Shooting";
+		else if (currAnim == "StartedMoving")
+			animName = "StartedMovingAndShooting";
+		else if (currAnim == "Moving" && frameIndex < 2)
+			animName = "StartedMovingAndShooting";
+		else if (currAnim == "Moving" && frameIndex >= 2)
+			animName = "MovingAndShooting";
+		else if (currAnim == "Jumping")
+			animName = "JumpingAndShooting";
+		else if (currAnim == "Falling")
+			animName = "FallingAndShooting";
+		else if (currAnim == "Landing")
+			animName = "LandingAndShooting";
+		else
+		{
+			animName = currAnim;
+			frameInd = (int)frameIndex;
+		}
+
+		
+		bullets.push_back(BusterBullet{ this, Cfg::Textures::BusterBullet28x18, {getPos().x - getOff().x + frameAnchors[animName]["Right"][frameInd].x, getPos().y - getOff().y + frameAnchors[animName]["Right"][frameInd].y}, {700.f,0.f}, {0.f,0.f}, {28.f,18.f},{{0,0},{28,18}}});
+	}
+}

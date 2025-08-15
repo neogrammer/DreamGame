@@ -38,13 +38,15 @@ public:
 	void run()
 	{
 
-		tv.create(sf::VideoMode{{1600U,900U},32U}, "DreamGame", sf::State::Windowed);
+		tv.create(sf::VideoMode{ {1600U,900U},32U }, "DreamGame", sf::State::Windowed);
 		tv.setVerticalSyncEnabled(true);
 		tv.setMaximumSize(sf::Vector2u{ 1600u,900u });
 		tv.setMinimumSize(sf::Vector2u{ 1600u,900u });
 
 		sf::Clock timer;
-
+		int fpsCount = 0;
+		int fps = 0;
+		float fpsTimerElapsed = 0.f;
 		while (tv.isOpen())
 		{
 
@@ -75,14 +77,30 @@ public:
 			handleInput();
 
 			float dt = timer.restart().asSeconds();
-			if (dt > 0.016f)
-				dt = 0.016f;
+			//if (dt > 0.016f)
+			//	dt = 0.016f;
 
 			updateFrame(tv, dt);
 
 			tv.clear(sf::Color(47, 147, 247, 255));
-
+			
 			renderScene();
+			sf::Text txt{ Cfg::fonts.get(Cfg::Fonts::SplashFont)};
+			fpsCount++;
+			fpsTimerElapsed += dt;
+			if (fpsTimerElapsed >= 1.f)
+			{
+				fps = fpsCount;
+				fpsCount = 0;
+				fpsTimerElapsed = 0.f;
+			}
+			std::string str;
+			str.append(std::to_string(fps));
+			txt.setString(str);
+			txt.setCharacterSize(44U);
+			txt.setFillColor(sf::Color::White);
+			txt.setPosition({ 40.f,40.f });
+			tv.draw(txt);
 
 			tv.display();
 

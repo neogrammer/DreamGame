@@ -15,6 +15,9 @@ class SmileyJoe : public AnimObject, public ShootableObject
 	bool patrolling{ true };
 	int rotateDir{ 0 };
 
+	bool isHit{ false };
+	float hitElapsed{ 0.f };
+	float hitDelay{ 0.8f };
 public:
 
 	using AnimObject::AnimObject;
