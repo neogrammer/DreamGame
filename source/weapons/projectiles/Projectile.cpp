@@ -23,3 +23,13 @@ bool Projectile::isMarked()
 {
 	return marked;
 }
+
+int Projectile::getPower()
+{
+	return power;
+}
+
+void Projectile::setPower(int power_)
+{
+	power = power_;
+}

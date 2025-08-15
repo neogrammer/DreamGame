@@ -230,11 +230,21 @@ std::string SmileyJoe::getFSMState()
 		return toString(getStateEnum(fsm->getStateVariant())).data();
 }
 
-void SmileyJoe::takeHit()
+void SmileyJoe::takeHit(int dmg_)
 {
 
+	health -= dmg_;
+	if (health <= 0)
+	{
+		destroy();
+	}
 	setCol(sf::Color::Blue);
 	isHit = true;
+}
+
+void SmileyJoe::destroy()
+{
+	marked = true;
 }
 
 FSM_SmileyJoe& SmileyJoe::getFSM()
@@ -242,3 +252,12 @@ FSM_SmileyJoe& SmileyJoe::getFSM()
 	return *fsm;
 }
 
+void SmileyJoe::mark(bool cond_)
+{
+	marked = cond_;
+}
+
+bool SmileyJoe::isMarked()
+{
+	return marked;
+}

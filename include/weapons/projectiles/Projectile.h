@@ -7,7 +7,10 @@ class Projectile : public AnimObject
 {
 	AnimObject* owner{ nullptr };
 	bool marked{ false };
+	int power{ 1 };
 public:
+
+
 	Projectile() = delete;
 	Projectile(AnimObject* owner_);
 	Projectile(AnimObject* owner_, Cfg::Textures texID_, sf::Vector2f pos_ = { 0.f,0.f }, sf::Vector2f vel_ = { 0.f,0.f }, sf::Vector2f off_ = { 0.f,0.f }, sf::Vector2f size_ = { 0.f,0.f }, sf::IntRect rect_ = { {0,0},{0,0} });
@@ -23,6 +26,8 @@ public:
 
 	void destroy();
 	bool isMarked();
+	int getPower();
+	void setPower(int power_);
 };
 
 #endif

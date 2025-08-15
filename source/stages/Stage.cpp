@@ -15,6 +15,9 @@ void Stage::setWindow(sf::RenderWindow* wnd_)
 
 void Stage::updateDynamicElements(float dt)
 {
+
+
+
 }
 
 Tilemap& Stage::getTilemap()

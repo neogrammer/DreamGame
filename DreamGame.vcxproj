@@ -167,8 +167,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(ProjectDir)include;C:\sdks\sfml3\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\sdks\sfml3\lib;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\lib\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)include;C:\Users\AUStudent\Desktop\sdks\SFML-3.0.0\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\AUStudent\Desktop\sdks\SFML-3.0.0\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>$(ProjectDir)include;C:\sdks\sfml3\include;$(IncludePath)</IncludePath>

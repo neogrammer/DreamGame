@@ -41,7 +41,6 @@ public:
     {
         if (tookHit)
         {
-            takeHit();
             tookHit = false;
         }
 
@@ -76,7 +75,7 @@ public:
         }
     }
 
-    virtual void takeHit() = 0;
+    virtual void takeHit(int dmg_) = 0;
 };
 
 #endif

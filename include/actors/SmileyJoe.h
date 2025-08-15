@@ -18,6 +18,12 @@ class SmileyJoe : public AnimObject, public ShootableObject
 	bool isHit{ false };
 	float hitElapsed{ 0.f };
 	float hitDelay{ 0.8f };
+
+	int health{ 10 };
+	int healthMax{ 10 };
+
+	bool marked{ false };
+
 public:
 
 	using AnimObject::AnimObject;
@@ -52,10 +58,12 @@ public:
 	void makeTransition() override final;
 	std::string getFSMState() override final;
 
-	void takeHit() override final;
+	void takeHit(int dmg_) override final;
 
 	FSM_SmileyJoe& getFSM();
-
+	void mark(bool cond_);
+	bool isMarked();
+	void destroy();
 
 };
 

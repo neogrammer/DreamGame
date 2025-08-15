@@ -5,8 +5,9 @@
 #include <resources/Cfg.h>
 #include <memory>
 
+#include <actors/SmileyJoe.h>
+
 class FSM_SmileyJoe;
-class SmileyJoe;
 class Animator;
 
 class IntroStage : public Stage

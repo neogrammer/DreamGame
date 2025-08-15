@@ -2,7 +2,7 @@
 #include <resources/Cfg.h>
 #include <actors/ShootableObject.h>
 #include <FSM/SmileyJoeFSM.h>
-#include <actors/SmileyJoe.h>
+
 #include <misc/Animator.h>
 
 IntroStage::IntroStage()
@@ -26,7 +26,7 @@ void IntroStage::input()
 void IntroStage::update(float dt)
 {
     updateDynamicElements(dt);
-    smiles->update(*mWnd, dt);
+   
 }
 
 
@@ -86,8 +86,8 @@ void IntroStage::render(sf::RenderWindow& window)
     mWnd = &window;
 
     tmap.render(window);
-
-    smiles->render(window);
+    if (smiles)
+        smiles->render(window);
 
     sf::Text titleText2{ Cfg::fonts.get(Cfg::Fonts::SplashFont) };
     titleText2.setString("Intro Stage");
@@ -135,7 +135,15 @@ void IntroStage::onExit()
 void IntroStage::updateDynamicElements(float dt)
 {
     // run any scripts on all the active objects in the stage
+    if (smiles != nullptr)
+    {
+        if (smiles->isMarked())
+        {
+            smiles.reset();
+            smiles = nullptr;
+        }
 
-    smiles->update(*mWnd, dt);
-
+    }
+    if (smiles)
+        smiles->update(*mWnd, dt);
 }
