@@ -111,8 +111,32 @@ void PlayScene::update(sf::RenderWindow& window, float dt)
             }
             if (found)
             {
-                smiley->takeHit(b.getPower());
+               
                 b.destroy();
+                smiley->takeHit(b.getPower());
+                
+                if (smiley->health > 0)
+                {
+                    if (smiley->currSnd == 0)
+                    {
+                        smiley->hitSnd0.play();
+                        smiley->currSnd = 1;
+                    }
+                    else if (smiley->currSnd == 1)
+                    {
+                        smiley->hitSnd1.play();
+                        smiley->currSnd = 2;
+                    }
+                    else if (smiley->currSnd == 2)
+                    {
+                        smiley->hitSnd2.play();
+                        smiley->currSnd = 0;
+                    }
+                }
+                else if (smiley->health <= 0)
+                {
+                    smiley->deadSnd.play();
+                }
             }
         }
     }

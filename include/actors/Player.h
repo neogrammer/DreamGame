@@ -13,12 +13,17 @@ class Player : public AnimObject, public ShooterObject
 	float shootElapsed{ 0.f };
 	float shootOnCooldown{ false };
 public:
+	sf::Sound landSnd{ Cfg::sounds.get(Cfg::Sounds::MM_Land) };
+	sf::Sound jumpSnd{ Cfg::sounds.get(Cfg::Sounds::MM_Jump) };
+	sf::Sound shotSnd{ Cfg::sounds.get(Cfg::Sounds::MM_Shot1) };
 	bool canSetInitialState{ true };
 	bool collisionOccurred{ false };
 	sf::FloatRect collisionRect{};
 	float shootPressedElapsed{};
 	float shootPressedDelay{ 0.25f };
 	bool shootPressed{ false };
+
+	int maxBullets{ 3 };
 
 	std::vector<BusterBullet> bullets;
 

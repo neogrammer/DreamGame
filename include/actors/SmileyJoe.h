@@ -2,6 +2,7 @@
 #define SMILEYJOE_H__
 #include <misc/AnimObject.h>
 #include <actors/ShootableObject.h>
+#include <resources/Cfg.h>
 #include <memory>
 
 class FSM_SmileyJoe;
@@ -17,8 +18,17 @@ class SmileyJoe : public AnimObject, public ShootableObject
 
 	bool isHit{ false };
 	float hitElapsed{ 0.f };
-	float hitDelay{ 0.8f };
+	float hitDelay{ 0.2f };
 
+
+	
+public:
+	int currSnd{ 0 };
+	int numSnds{ 3 };
+	sf::Sound hitSnd0{ Cfg::sounds.get(Cfg::Sounds::MM_SmDmg) };
+	sf::Sound hitSnd1{ Cfg::sounds.get(Cfg::Sounds::MM_SmDmg) };
+	sf::Sound hitSnd2{ Cfg::sounds.get(Cfg::Sounds::MM_SmDmg) };
+	sf::Sound deadSnd{ Cfg::sounds.get(Cfg::Sounds::MM_Die) };
 	int health{ 10 };
 	int healthMax{ 10 };
 

@@ -1,7 +1,7 @@
 #include <actors/SmileyJoe.h>
 #include <misc/Animator.h>
 #include <FSM/SmileyJoeFSM.h>
-
+#include <resources/Cfg.h>
 
 SmileyJoe::SmileyJoe()
 	: AnimObject{ Cfg::Textures::SmileyJoe126x126, {}, {}, {}, {126.f,120.f}, {{0,0},{126,120}}}, fsm{std::make_unique<FSM_SmileyJoe>()}

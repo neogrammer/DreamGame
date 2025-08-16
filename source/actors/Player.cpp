@@ -164,6 +164,7 @@ void Player::jump()
 
 	if (canJump())
 	{
+		jumpSnd.play();
 		dispatch(*fsm, EventJumped{});
 		setVel({ getVel().x, -1200.f });
 	}
@@ -244,6 +245,7 @@ void Player::land()
 
 	if (getCurrAnimName() == "Falling" || getCurrAnimName() == "FallingAndShooting")
 	{
+		landSnd.play();
 		dispatch(*fsm, EventLanded{});
 		beginTransitioning();
 		setVel({ getVel().x, 0.f });
@@ -298,55 +300,58 @@ void Player::createBullet()
 		return;
 
 	int frameInd = 0;
-
-	if (isFacingLeft())
+	if (bullets.size() < maxBullets)
 	{
-		if (currAnim == "Idle")
-			animName = "Shooting";
-		else if (currAnim == "StartedMoving")
-			animName = "StartedMovingAndShooting";
-		else if (currAnim == "Moving" && frameIndex < 2)
-			animName = "StartedMovingAndShooting";
-		else if (currAnim == "Moving" && frameIndex >= 2)
-			animName = "MovingAndShooting";
-		else if (currAnim == "Jumping")
-			animName = "JumpingAndShooting";
-		else if (currAnim == "Falling")
-			animName = "FallingAndShooting";
-		else if (currAnim == "Landing")
-			animName = "LandingAndShooting";
+		if (isFacingLeft())
+		{
+			if (currAnim == "Idle")
+				animName = "Shooting";
+			else if (currAnim == "StartedMoving")
+				animName = "StartedMovingAndShooting";
+			else if (currAnim == "Moving" && frameIndex < 2)
+				animName = "StartedMovingAndShooting";
+			else if (currAnim == "Moving" && frameIndex >= 2)
+				animName = "MovingAndShooting";
+			else if (currAnim == "Jumping")
+				animName = "JumpingAndShooting";
+			else if (currAnim == "Falling")
+				animName = "FallingAndShooting";
+			else if (currAnim == "Landing")
+				animName = "LandingAndShooting";
+			else
+			{
+				animName = currAnim;
+				frameInd = (int)frameIndex;
+			}
+
+			shotSnd.play();
+			bullets.push_back(BusterBullet{ this, Cfg::Textures::BusterBullet28x18, {getPos().x - getOff().x + frameAnchors[animName]["Left"][frameInd].x, getPos().y - getOff().y + frameAnchors[animName]["Left"][frameInd].y}, {-700.f,0.f}, {0.f,0.f}, {28.f,18.f},{{0,0},{28,18}} });
+		}
 		else
 		{
-			animName = currAnim;
-			frameInd = (int)frameIndex;
+			if (currAnim == "Idle")
+				animName = "Shooting";
+			else if (currAnim == "StartedMoving")
+				animName = "StartedMovingAndShooting";
+			else if (currAnim == "Moving" && frameIndex < 2)
+				animName = "StartedMovingAndShooting";
+			else if (currAnim == "Moving" && frameIndex >= 2)
+				animName = "MovingAndShooting";
+			else if (currAnim == "Jumping")
+				animName = "JumpingAndShooting";
+			else if (currAnim == "Falling")
+				animName = "FallingAndShooting";
+			else if (currAnim == "Landing")
+				animName = "LandingAndShooting";
+			else
+			{
+				animName = currAnim;
+				frameInd = (int)frameIndex;
+			}
+
+			shotSnd.play();
+
+			bullets.push_back(BusterBullet{ this, Cfg::Textures::BusterBullet28x18, {getPos().x - getOff().x + frameAnchors[animName]["Right"][frameInd].x, getPos().y - getOff().y + frameAnchors[animName]["Right"][frameInd].y}, {700.f,0.f}, {0.f,0.f}, {28.f,18.f},{{0,0},{28,18}} });
 		}
-
-
-		bullets.push_back(BusterBullet{ this, Cfg::Textures::BusterBullet28x18, {getPos().x - getOff().x + frameAnchors[animName]["Left"][frameInd].x, getPos().y - getOff().y + frameAnchors[animName]["Left"][frameInd].y}, {-700.f,0.f}, {0.f,0.f}, {28.f,18.f},{{0,0},{28,18}}});
-	}
-	else
-	{
-		if (currAnim == "Idle")
-			animName = "Shooting";
-		else if (currAnim == "StartedMoving")
-			animName = "StartedMovingAndShooting";
-		else if (currAnim == "Moving" && frameIndex < 2)
-			animName = "StartedMovingAndShooting";
-		else if (currAnim == "Moving" && frameIndex >= 2)
-			animName = "MovingAndShooting";
-		else if (currAnim == "Jumping")
-			animName = "JumpingAndShooting";
-		else if (currAnim == "Falling")
-			animName = "FallingAndShooting";
-		else if (currAnim == "Landing")
-			animName = "LandingAndShooting";
-		else
-		{
-			animName = currAnim;
-			frameInd = (int)frameIndex;
-		}
-
-		
-		bullets.push_back(BusterBullet{ this, Cfg::Textures::BusterBullet28x18, {getPos().x - getOff().x + frameAnchors[animName]["Right"][frameInd].x, getPos().y - getOff().y + frameAnchors[animName]["Right"][frameInd].y}, {700.f,0.f}, {0.f,0.f}, {28.f,18.f},{{0,0},{28,18}}});
 	}
 }

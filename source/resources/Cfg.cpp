@@ -34,11 +34,12 @@ void Cfg::initSounds()
 {
 	sounds.load(Sounds::MM_BigDmg, "assets/sfx/bigdmg.wav");
 	sounds.load(Sounds::MM_SmDmg, "assets/sfx/smalldmg.wav");
-	sounds.load(Sounds::MM_Hurt, "assets/sfx/bigdmg.wav");
-	sounds.load(Sounds::MM_, "assets/sfx/bigdmg.wav");
-	sounds.load(Sounds::MM_BigDmg, "assets/sfx/bigdmg.wav");
-	sounds.load(Sounds::MM_BigDmg, "assets/sfx/bigdmg.wav");
-	sounds.load(Sounds::MM_BigDmg, "assets/sfx/bigdmg.wav");
+	sounds.load(Sounds::MM_Hurt, "assets/sfx/hurt.wav");
+	sounds.load(Sounds::MM_Shot1, "assets/sfx/shot1.wav");
+	sounds.load(Sounds::MM_Die, "assets/sfx/die.wav");
+	sounds.load(Sounds::MM_Jump, "assets/sfx/jump.wav");
+	sounds.load(Sounds::MM_Land, "assets/sfx/land.wav");
+
 
 }
 
